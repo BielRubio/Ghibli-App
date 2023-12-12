@@ -46,4 +46,24 @@ class Movie {
     this.species = const [],
     this.locations = const [],
   });
+
+  factory Movie.fromJson(dynamic json) {
+    return Movie(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      imageUrl: json['imageUrl'] as String,
+      description: json['description'] as String,
+      director: json['director'] as String,
+      producer: json['producer'] as String,
+      release_date: json['release_date'] as String,
+      running_time: json['running_time'] as String,
+      rt_score: json['rt_score'] as double,
+    );
+  }
+
+  static List<Movie> moviesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return Movie.fromJson(data);
+    }).toList();
+  }
 }
