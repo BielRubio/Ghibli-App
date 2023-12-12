@@ -66,4 +66,9 @@ class Movie {
       return Movie.fromJson(data);
     }).toList();
   }
+
+  @override
+  String toString() {
+    return 'Movie {id: $id,  title: $title,  imageUrl: $imageUrl,  director: $director, producer: $producer,release_date: $release_date,  running_time: $running_time}';
+  }
 }
