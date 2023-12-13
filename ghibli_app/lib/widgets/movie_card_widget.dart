@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 class MovieCard extends StatelessWidget {
   final String id,
       title,
-      imageUrl,
+      image,
       description,
       director,
       producer,
       release_date,
-      running_time;
-
-  final double rt_score;
+      running_time,
+      rt_score;
 
   MovieCard({
     required this.id,
     required this.title,
-    required this.imageUrl,
+    required this.image,
     required this.description,
     required this.director,
     required this.producer,
@@ -49,7 +48,7 @@ class MovieCard extends StatelessWidget {
             Colors.black.withOpacity(0.35),
             BlendMode.multiply,
           ),
-          image: NetworkImage(imageUrl),
+          image: NetworkImage(image),
           fit: BoxFit.cover,
         ),
       ),
@@ -89,7 +88,7 @@ class MovieCard extends StatelessWidget {
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                      Text(running_time),
+                      Text(rt_score),
                     ],
                   ),
                 ),

@@ -1,24 +1,27 @@
 import 'dart:convert';
 import 'package:ghibli_app/model/movie.dart';
+import 'package:ghibli_app/widgets/movie_card_widget.dart';
 import 'package:http/http.dart' as http;
 
 class MovieApi {
   static Future<List<Movie>> getMovies() async {
-    var uri = Uri.https(
-      'ghibliapi.vercel.app',
-      'films',
-    );
+    var uri = Uri.https('ghibliapi.vercel.app', 'films');
 
-    final response = await http.get(uri, headers: {
-      "Content-Type": "application/json",
-      // Add any additional headers if needed
-    });
+    try {
+      final response = await http.get(uri);
 
-    if (response.statusCode == 200) {
-      List<dynamic> data = jsonDecode(response.body);
-      return Movie.moviesFromSnapshot(data);
-    } else {
-      throw Exception('Failed to load movies');
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonData = jsonDecode(response.body);
+        // Aquí estás devolviendo una List<dynamic>, necesitas mapearla a List<Movie>
+        List<Movie> movies =
+            jsonData.map((data) => Movie.fromJson(data)).toList();
+        return movies;
+      } else {
+        throw Exception('Failed to fetch movies: ${response.statusCode}');
+      }
+    } on Exception catch (e) {
+      print('Failed to fetch movies: $e');
+      throw Exception('Failed to fetch movies: $e');
     }
   }
 }

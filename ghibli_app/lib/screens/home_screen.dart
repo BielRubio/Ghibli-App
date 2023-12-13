@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return MovieCard(
                     id: _movies[index].id,
                     title: _movies[index].title,
-                    imageUrl: _movies[index].imageUrl,
+                    image: _movies[index].image,
                     description: _movies[index].description,
                     director: _movies[index].director,
                     producer: _movies[index].producer,

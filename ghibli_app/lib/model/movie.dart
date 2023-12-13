@@ -20,14 +20,14 @@ class Location {
 class Movie {
   final String id,
       title,
-      imageUrl,
+      image,
       description,
       director,
       producer,
       release_date,
-      running_time;
+      running_time,
+      rt_score;
 
-  final double rt_score;
   final List<Character> people;
   final List<Specie> species;
   final List<Location> locations;
@@ -35,7 +35,7 @@ class Movie {
   const Movie({
     required this.id,
     required this.title,
-    required this.imageUrl,
+    required this.image,
     required this.description,
     required this.director,
     required this.producer,
@@ -51,13 +51,16 @@ class Movie {
     return Movie(
       id: json['id'] as String,
       title: json['title'] as String,
-      imageUrl: json['imageUrl'] as String,
+      image: json['image'] as String,
       description: json['description'] as String,
       director: json['director'] as String,
       producer: json['producer'] as String,
       release_date: json['release_date'] as String,
       running_time: json['running_time'] as String,
-      rt_score: json['rt_score'] as double,
+      rt_score: json['rt_score'] as String,
+      //people: List<Character>.from(json['people'].map((x) => Character.fromJson(x))),
+      //species: List<Specie>.from(json['species'].map((x) => Specie.fromJson(x))),
+      //locations: List<Location>.from(json['locations'].map((x) => Location.fromJson(x))),
     );
   }
 
@@ -69,6 +72,6 @@ class Movie {
 
   @override
   String toString() {
-    return 'Movie {id: $id,  title: $title,  imageUrl: $imageUrl,  director: $director, producer: $producer,release_date: $release_date,  running_time: $running_time}';
+    return 'Movie {id: $id,  title: $title,  imageUrl: $image,  director: $director, producer: $producer,release_date: $release_date,  running_time: $running_time}';
   }
 }
