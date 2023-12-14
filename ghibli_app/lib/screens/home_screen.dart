@@ -42,8 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(width: 10),
               const Text(
-                'Ghibli App',
+                'GHIBLI REALM',
                 textScaleFactor: 2,
+                style: TextStyle(
+                  fontFamily: 'Ghibli'
+                ),
               ),
             ],
           ),

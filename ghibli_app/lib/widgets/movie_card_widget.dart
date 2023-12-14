@@ -71,13 +71,12 @@ class _MovieCardState extends State<MovieCard> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.auto_awesome_rounded,
-                        color: Colors.yellow,
-                        size: 18,
+                      Image.asset(
+                        "assets/images/Rotten_Tomatoes.png",
+                        scale: 10,
                       ),
                       const SizedBox(width: 7),
-                      Text(widget.movie.rt_score + "/100"),
+                      Text("${widget.movie.rt_score}/100"),
                     ],
                   ),
                 ),
