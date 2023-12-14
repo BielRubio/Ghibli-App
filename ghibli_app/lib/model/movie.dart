@@ -31,8 +31,8 @@ class Movie {
   final List<Character> people;
   final List<Specie> species;
   final List<Location> locations;
-
-  const Movie({
+  bool liked;
+  Movie({
     required this.id,
     required this.title,
     required this.image,
@@ -45,6 +45,7 @@ class Movie {
     this.people = const [],
     this.species = const [],
     this.locations = const [],
+    this.liked = false,
   });
 
   factory Movie.fromJson(dynamic json) {

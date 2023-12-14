@@ -48,22 +48,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: _movies.length,
-                itemBuilder: (context, index) {
-                  return MovieCard(
-                    id: _movies[index].id,
-                    title: _movies[index].title,
-                    image: _movies[index].image,
-                    description: _movies[index].description,
-                    director: _movies[index].director,
-                    producer: _movies[index].producer,
-                    release_date: _movies[index].release_date,
-                    running_time: _movies[index].running_time,
-                    rt_score: _movies[index].rt_score,
-                  );
-                },
-              ));
+            ? const Center(child: CircularProgressIndicator())
+            : GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8.0, 
+              mainAxisSpacing: 8.0, 
+              childAspectRatio: 0.7,
+            ),
+            itemCount: _movies.length,
+            itemBuilder: (context, index) {
+              return MovieCard(
+                movie: _movies[index],
+              );
+            },
+          ),
+  );
   }
 }

@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:ghibli_app/model/movie.dart';
 
-class MovieCard extends StatelessWidget {
-  final String id,
-      title,
-      image,
-      description,
-      director,
-      producer,
-      release_date,
-      running_time,
-      rt_score;
+class MovieCard extends StatefulWidget {
+  final Movie movie;
 
-  MovieCard({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.description,
-    required this.director,
-    required this.producer,
-    required this.release_date,
-    required this.running_time,
-    required this.rt_score,
-  });
+  const MovieCard({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
 
+  @override
+  State<MovieCard> createState() => _MovieCardState();
+}
+
+class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-      width: MediaQuery.of(context).size.width,
-      height: 180,
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      height: 400,
       decoration: BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.circular(15),
@@ -44,32 +34,28 @@ class MovieCard extends StatelessWidget {
           ),
         ],
         image: DecorationImage(
-          colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.35),
-            BlendMode.multiply,
-          ),
-          image: NetworkImage(image),
+          image: NetworkImage(widget.movie.image),
           fit: BoxFit.cover,
         ),
       ),
       child: Stack(
         children: [
           Align(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 19,
-                ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                textAlign: TextAlign.center,
+            alignment: Alignment.topRight,
+            child: IconButton(
+              icon: Icon(
+                widget.movie.liked ? Icons.favorite : Icons.favorite_border,
+                color: widget.movie.liked ? Colors.red : Colors.white,
               ),
+              onPressed: () {
+                setState(() {
+                  widget.movie.liked = !widget.movie.liked;
+                });
+              },
             ),
-            alignment: Alignment.center,
           ),
           Align(
+            alignment: Alignment.bottomLeft,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -82,38 +68,37 @@ class MovieCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.yellow,
                         size: 18,
                       ),
                       SizedBox(width: 7),
-                      Text(rt_score),
+                      Text(widget.movie.rt_score),
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.schedule,
                         color: Colors.yellow,
                         size: 18,
                       ),
-                      SizedBox(width: 7),
-                      Text(release_date),
+                      const SizedBox(width: 7),
+                      Text(widget.movie.release_date),
                     ],
                   ),
                 )
               ],
             ),
-            alignment: Alignment.bottomLeft,
           ),
         ],
       ),
