@@ -30,12 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 125, 189, 125),
+          toolbarHeight: 80,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.movie),
+              Image.asset(
+                "assets/images/logo_ghibli.png",
+                scale: 10,
+              ),
               SizedBox(width: 10),
-              Text('Ghibli Api'),
+              Text(
+                'Ghibli Api',
+                textScaleFactor: 2,
+              ),
             ],
           ),
         ),
