@@ -20,7 +20,6 @@ class MovieApi {
         throw Exception('Failed to fetch movies: ${response.statusCode}');
       }
     } on Exception catch (e) {
-      print('Failed to fetch movies: $e');
       throw Exception('Failed to fetch movies: $e');
     }
   }

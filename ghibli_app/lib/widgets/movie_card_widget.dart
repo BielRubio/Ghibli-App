@@ -25,7 +25,7 @@ class _MovieCardState extends State<MovieCard> {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.6),
-            offset: Offset(
+            offset: const Offset(
               0.0,
               10.0,
             ),
@@ -40,6 +40,7 @@ class _MovieCardState extends State<MovieCard> {
       ),
       child: Stack(
         children: [
+          //Like button
           Align(
             alignment: Alignment.topRight,
             child: IconButton(
@@ -54,30 +55,13 @@ class _MovieCardState extends State<MovieCard> {
               },
             ),
           ),
+          //RT score  and relase data
           Align(
             alignment: Alignment.bottomLeft,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 18,
-                      ),
-                      SizedBox(width: 7),
-                      Text(widget.movie.rt_score),
-                    ],
-                  ),
-                ),
+                //RT score
                 Container(
                   padding: const EdgeInsets.all(5),
                   margin: const EdgeInsets.all(10),
@@ -88,9 +72,29 @@ class _MovieCardState extends State<MovieCard> {
                   child: Row(
                     children: [
                       const Icon(
-                        Icons.schedule,
+                        Icons.auto_awesome_rounded,
                         color: Colors.yellow,
                         size: 18,
+                      ),
+                      const SizedBox(width: 7),
+                      Text(widget.movie.rt_score + "/100"),
+                    ],
+                  ),
+                ),
+                //Release date
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.date_range_outlined,
+                        color: Colors.yellow,
+                        size: 21,
                       ),
                       const SizedBox(width: 7),
                       Text(widget.movie.release_date),

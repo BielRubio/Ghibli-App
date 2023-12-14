@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/widgets/movie_card_widget.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 125, 189, 125),
+          backgroundColor: const Color.fromARGB(255, 125, 189, 125),
           toolbarHeight: 80,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -39,9 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 "assets/images/logo_ghibli.png",
                 scale: 10,
               ),
-              SizedBox(width: 10),
-              Text(
-                'Ghibli Api',
+              const SizedBox(width: 10),
+              const Text(
+                'Ghibli App',
                 textScaleFactor: 2,
               ),
             ],
