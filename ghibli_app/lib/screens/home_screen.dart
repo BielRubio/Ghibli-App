@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-      drawer: widget_side_bar(),
+      drawer: const widget_side_bar(),
     );
   }
 }
