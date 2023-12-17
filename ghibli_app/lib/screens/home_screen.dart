@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/widgets/movie_card_widget.dart';
+import 'package:ghibli_app/widgets/search_bar.dart';
 import 'package:ghibli_app/widgets/side_bar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,20 +53,23 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-                childAspectRatio: 0.7,
+          : Stack(children: [
+              GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                  childAspectRatio: 0.7,
+                ),
+                itemCount: _movies.length,
+                itemBuilder: (context, index) {
+                  return MovieCard(
+                    movie: _movies[index],
+                  );
+                },
               ),
-              itemCount: _movies.length,
-              itemBuilder: (context, index) {
-                return MovieCard(
-                  movie: _movies[index],
-                );
-              },
-            ),
+              SearchBarWidget(),
+            ]),
       drawer: const widget_side_bar(),
     );
   }
