@@ -17,15 +17,15 @@ class _LocationCardState extends State<LocationCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      width: 200,
       height: 180,
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(15),
+        color: Color.fromARGB(255, 255, 255, 255),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withOpacity(0.2),
             offset: Offset(
               0.0,
               10.0,
@@ -35,70 +35,53 @@ class _LocationCardState extends State<LocationCard> {
           ),
         ],
       ),
-      child: Stack(
-        children: [
-          Align(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.0),
-              child: Text(
-                widget.location.name,
-                style: TextStyle(
-                  fontSize: 19,
-                ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                textAlign: TextAlign.center,
-              ),
+      child: Align(
+        alignment: Alignment.center,
+        child: Row(
+          children: [
+            Image.asset(
+              "assets/images/logo_ghibli.png",
+              scale: 1,
             ),
-            alignment: Alignment.center,
-          ),
-          Align(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 18,
-                      ),
-                      SizedBox(width: 7),
-                      Text(widget.location.climate),
-                      Text(widget.location.terrain),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.schedule,
-                        color: Colors.yellow,
-                        size: 18,
-                      ),
-                      SizedBox(width: 7),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            alignment: Alignment.bottomLeft,
-          ),
-        ],
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                child: Column(
+                  children: [
+                    Text(
+                      widget.location.name,
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ),
+                    const SizedBox(width: 7),
+                    Row(
+                      children: [
+                        Text(
+                          "Climate: ",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        const SizedBox(width: 7),
+                        Text(
+                          widget.location.climate,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Terrain: ",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        const SizedBox(width: 7),
+                        Text(
+                          widget.location.terrain,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    )
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
