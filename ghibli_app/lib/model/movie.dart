@@ -14,7 +14,35 @@ class Specie {
 
 class Location {
   final String id, name, climate, terrain;
-  const Location(this.id, this.name, this.climate, this.terrain);
+  Location(
+      {required this.id,
+      required this.name,
+      required this.climate,
+      required this.terrain});
+
+  factory Location.fromJson(dynamic json) {
+    return Location(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      climate: json['climate'] as String,
+      terrain: json['terrain'] as String,
+
+      //people: List<Character>.from(json['people'].map((x) => Character.fromJson(x))),
+      //species: List<Specie>.from(json['species'].map((x) => Specie.fromJson(x))),
+      //locations: List<Location>.from(json['locations'].map((x) => Location.fromJson(x))),
+    );
+  }
+
+  static List<Location> moviesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return Location.fromJson(data);
+    }).toList();
+  }
+
+  @override
+  String toString() {
+    return 'Location {id: $id,  name: $name,  climate: $climate,  terrain: $terrain}';
+  }
 }
 
 class Movie {
