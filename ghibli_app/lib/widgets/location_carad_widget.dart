@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
+import 'package:ghibli_app/model/location.api.dart';
 
 class LocationCard extends StatefulWidget {
   final Location location;
@@ -23,26 +24,13 @@ class _LocationCardState extends State<LocationCard> {
       height: 180,
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 255, 255),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            offset: Offset(
-              0.0,
-              10.0,
-            ),
-            blurRadius: 10.0,
-            spreadRadius: -6.0,
-          ),
-        ],
       ),
       child: Align(
         alignment: Alignment.center,
         child: Row(
           children: [
-            Image.asset(
-              "assets/images/logo_ghibli.png",
-              scale: 1,
-            ),
+            Image.network(
+                'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif'),
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                 child: Column(
