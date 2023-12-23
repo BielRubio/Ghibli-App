@@ -29,8 +29,10 @@ class _LocationCardState extends State<LocationCard> {
         alignment: Alignment.center,
         child: Row(
           children: [
-            Image.network(
-                'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif'),
+           Image.asset(
+              "assets/images/logo_ghibli.png",
+              
+            ),
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                 child: Column(

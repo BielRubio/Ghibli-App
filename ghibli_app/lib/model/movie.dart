@@ -1,8 +1,39 @@
 class Character {
   final String id, name, gender, age, eye_color, hair_color;
   final Specie specie;
-  const Character(this.id, this.name, this.gender, this.age, this.eye_color,
-      this.hair_color, this.specie);
+  Character(
+      {required this.id,
+      required this.name,
+      required this.gender,
+      required this.age,
+      required this.eye_color,
+      required this.hair_color,
+      required this.specie});
+
+  factory Character.fromJson(dynamic json) {
+    return Character(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      gender: json['gender'] as String,
+      age: json['age'] as String,
+      eye_color: json['eye_color'] as String,
+      hair_color: json['hair_color'] as String,
+      specie: json['specie'] as Specie,
+      
+    );
+  }
+
+  static List<Location> moviesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return Location.fromJson(data);
+    }).toList();
+  }
+
+  @override
+  String toString() {
+    String SPCname = specie.name;
+    return 'Location {id: $id,  name: $name,  gender: $gender,  age: $age, eye_color: $eye_color, hair_color: $hair_color, specie: $SPCname }';
+  }
 }
 
 class Specie {

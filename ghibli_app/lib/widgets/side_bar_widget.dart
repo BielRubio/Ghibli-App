@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/screens/locations_screen.dart';
+import 'package:ghibli_app/screens/characters_screen.dart';
 
 class widget_side_bar extends StatelessWidget {
   const widget_side_bar({
@@ -22,7 +23,12 @@ class widget_side_bar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Characters'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CharactersScreen()));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.location_on),
