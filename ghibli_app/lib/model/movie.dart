@@ -1,6 +1,5 @@
 class Character {
-  final String id, name, gender, age, eye_color, hair_color;
-  final Specie specie;
+  final String id, name, gender, age, eye_color, hair_color, specieID;
   Character(
       {required this.id,
       required this.name,
@@ -8,7 +7,7 @@ class Character {
       required this.age,
       required this.eye_color,
       required this.hair_color,
-      required this.specie});
+      required this.specieID});
 
   factory Character.fromJson(dynamic json) {
     return Character(
@@ -18,7 +17,7 @@ class Character {
       age: json['age'] as String,
       eye_color: json['eye_color'] as String,
       hair_color: json['hair_color'] as String,
-      specie: json['specie'] as Specie,
+      specieID: json['species'] as String,
       
     );
   }
@@ -31,8 +30,7 @@ class Character {
 
   @override
   String toString() {
-    String SPCname = specie.name;
-    return 'Location {id: $id,  name: $name,  gender: $gender,  age: $age, eye_color: $eye_color, hair_color: $hair_color, specie: $SPCname }';
+    return 'Location {id: $id,  name: $name,  gender: $gender,  age: $age, eye_color: $eye_color, hair_color: $hair_color, species: $specieID }';
   }
 }
 

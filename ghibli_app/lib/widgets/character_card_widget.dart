@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 
-class LocationCard extends StatefulWidget {
-  final Location location;
+class CharacterCard extends StatefulWidget {
+  final Character character;
 
-  const LocationCard({
+  const CharacterCard({
     Key? key,
-    required this.location,
+    required this.character,
   }) : super(key: key);
 
   @override
-  State<LocationCard> createState() => _LocationCardState();
+  State<CharacterCard> createState() => _CharacterCardState();
 }
 
-class _LocationCardState extends State<LocationCard> {
+class _CharacterCardState extends State<CharacterCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,26 +30,25 @@ class _LocationCardState extends State<LocationCard> {
           children: [
            Image.asset(
               "assets/images/logo_ghibli.png",
-              
             ),
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                 child: Column(
                   children: [
                     Text(
-                      widget.location.name,
+                      widget.character.name,
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                     const SizedBox(width: 7),
                     Row(
                       children: [
                         Text(
-                          "Climate: ",
+                          "Gender: ",
                           style: TextStyle(color: Colors.black),
                         ),
                         const SizedBox(width: 7),
                         Text(
-                          widget.location.climate,
+                          widget.character.gender,
                           style: TextStyle(color: Colors.black),
                         ),
                       ],
@@ -57,12 +56,12 @@ class _LocationCardState extends State<LocationCard> {
                     Row(
                       children: [
                         Text(
-                          "Terrain: ",
+                          "Eye Color: ",
                           style: TextStyle(color: Colors.black),
                         ),
                         const SizedBox(width: 7),
                         Text(
-                          widget.location.terrain,
+                          widget.character.eye_color,
                           style: TextStyle(color: Colors.black),
                         ),
                       ],
