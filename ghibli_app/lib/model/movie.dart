@@ -1,5 +1,5 @@
 class Character {
-  final String id, name, gender, age, eye_color, hair_color, specieID;
+  final String id, name, gender, age, eye_color, hair_color, specieID, filmID;
   Character(
       {required this.id,
       required this.name,
@@ -7,9 +7,13 @@ class Character {
       required this.age,
       required this.eye_color,
       required this.hair_color,
-      required this.specieID});
+      required this.specieID,
+      required this.filmID});
 
   factory Character.fromJson(dynamic json) {
+    List<dynamic> films = json['films'];
+    String firstFilmUrl = films.isNotEmpty ? films[0] : "";
+
     return Character(
       id: json['id'] as String,
       name: json['name'] as String,
@@ -18,7 +22,7 @@ class Character {
       eye_color: json['eye_color'] as String,
       hair_color: json['hair_color'] as String,
       specieID: json['species'] as String,
-      
+      filmID: firstFilmUrl,
     );
   }
 
@@ -30,7 +34,7 @@ class Character {
 
   @override
   String toString() {
-    return 'Location {id: $id,  name: $name,  gender: $gender,  age: $age, eye_color: $eye_color, hair_color: $hair_color, species: $specieID }';
+    return 'Character {id: $id,  name: $name,  gender: $gender,  age: $age, eye_color: $eye_color, hair_color: $hair_color, species: $specieID }';
   }
 }
 

@@ -22,4 +22,36 @@ class CharacterApi {
       throw Exception('Failed to fetch characters: $e');
     }
   }
+  static Future<String> fetchSpeciesName(String apiUrl) async {
+  try {
+    final response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      final String name = data['name'];
+      return name;
+    } else {
+      throw Exception('Failed to load species name');
+    }
+  } catch (error) {
+    print('Error: $error');
+    throw Exception('Failed to fetch species name');
+  }
+}
+static Future<String> fetchMovieName(String apiUrl) async {
+  try {
+    final response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      final String name = data['movie'];
+      return name;
+    } else {
+      throw Exception('Failed to load movie name');
+    }
+  } catch (error) {
+    print('Error: $error');
+    throw Exception('Failed to fetch movie name');
+  }
+}
 }

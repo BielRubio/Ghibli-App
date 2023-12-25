@@ -37,11 +37,12 @@ class _CharactersScreenState extends State<CharactersScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(width: 10),
-            Text(
+            Flexible(child:Text(
               'ALL CHARACTERS',
               textScaleFactor: 2,
               style: TextStyle(fontFamily: 'Ghibli'),
-            ),
+            ), ),
+            
           ],
         ),
       ),
