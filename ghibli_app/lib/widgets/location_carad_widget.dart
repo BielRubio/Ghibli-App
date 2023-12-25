@@ -21,7 +21,7 @@ class _LocationCardState extends State<LocationCard> {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: 200,
       height: 180,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromARGB(255, 255, 255, 255),
       ),
       child: Align(
@@ -33,37 +33,37 @@ class _LocationCardState extends State<LocationCard> {
               
             ),
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                 child: Column(
                   children: [
                     Text(
                       widget.location.name,
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      style: const TextStyle(color: Colors.black, fontSize: 20),
                     ),
                     const SizedBox(width: 7),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "Climate: ",
                           style: TextStyle(color: Colors.black),
                         ),
                         const SizedBox(width: 7),
                         Text(
                           widget.location.climate,
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "Terrain: ",
                           style: TextStyle(color: Colors.black),
                         ),
                         const SizedBox(width: 7),
                         Text(
                           widget.location.terrain,
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ],
                     )

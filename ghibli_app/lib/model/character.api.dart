@@ -34,8 +34,7 @@ class CharacterApi {
       throw Exception('Failed to load species name');
     }
   } catch (error) {
-    print('Error: $error');
-    throw Exception('Failed to fetch species name');
+    return "Unknown";
   }
 }
 static Future<String> fetchMovieName(String apiUrl) async {
@@ -44,7 +43,7 @@ static Future<String> fetchMovieName(String apiUrl) async {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
-      final String name = data['movie'];
+      final String name = data['title'];
       return name;
     } else {
       throw Exception('Failed to load movie name');

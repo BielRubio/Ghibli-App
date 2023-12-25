@@ -11,6 +11,7 @@ class Character {
       required this.filmID});
 
   factory Character.fromJson(dynamic json) {
+    
     List<dynamic> films = json['films'];
     String firstFilmUrl = films.isNotEmpty ? films[0] : "";
 

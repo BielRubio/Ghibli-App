@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-              SearchBarWidget(),
+              const SearchBarWidget(),
             ]),
       drawer: const widget_side_bar(),
     );

@@ -16,38 +16,43 @@ class _CharacterCardState extends State<CharacterCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       child: Container(
         decoration: BoxDecoration(
-          color: Color.fromRGBO(103, 196, 123, 1),
+          color: const Color.fromRGBO(103, 196, 123, 1),
           borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(color: Color.fromARGB(255, 111, 153, 111), width: 3),
+          border: Border.all(color: const Color.fromARGB(255, 111, 153, 111), width: 3),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Image.asset(
                 "assets/images/logo_ghibli.png",
                 scale: 3.5,
               ),
             ),
-            SizedBox(width: 16), 
+            const SizedBox(width: 16), 
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.character.name,
-                    style: TextStyle(color: Colors.black, fontSize: 25),
-                  ),
-                  buildRow("Gender", widget.character.gender),
-                  buildRow("Age", widget.character.age),
-                  buildRow("Eye Color", widget.character.eye_color),
-                  buildRow("Hair Color", widget.character.hair_color),
-                  buildSpeciesRow("Specie", widget.character.specieID),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.character.name,
+                      style: const TextStyle(color: Colors.black, fontSize: 25, fontFamily: "Ghibli"),
+                    ),
+                    buildRow("Gender", widget.character.gender),
+                    buildRow("Age", widget.character.age),
+                    buildRow("Eye Color", widget.character.eye_color),
+                    buildRow("Hair Color", widget.character.hair_color),
+                    buildSpeciesRow("Specie", widget.character.specieID),
+                    buildMovieRow("Movie", widget.character.filmID),
+              
+                  ],
+                ),
               ),
             ),
           ],
@@ -58,12 +63,12 @@ class _CharacterCardState extends State<CharacterCard> {
 
 Widget buildSpeciesRow(String label, String apiUrl) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
           Text(
             "$label: ",
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(fontSize: 18, color: Colors.black),
           ),
           Flexible(
             child: FutureBuilder<String>(
@@ -72,17 +77,17 @@ Widget buildSpeciesRow(String label, String apiUrl) {
                 if (snapshot.hasData) {
                   return Text(
                     snapshot.data!,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(fontSize: 18, color: Colors.black),
                   );
                 } else if (snapshot.hasError) {
-                  return Text(
+                  return const Text(
                     "Error fetching species name",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(fontSize: 18, color: Colors.red),
                   );
                 } else {
-                  return Text(
+                  return const Text(
                     "Loading...",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   );
                 }
               },
@@ -92,19 +97,55 @@ Widget buildSpeciesRow(String label, String apiUrl) {
       ),
     );
   }
-  Widget buildRow(String label, String value) {
+Widget buildMovieRow(String label, String apiUrl) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
           Text(
             "$label: ",
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(fontSize: 18, color: Colors.black),
+          ),
+          Flexible(
+            child: FutureBuilder<String>(
+              future: CharacterApi.fetchMovieName(apiUrl),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    snapshot.data!,
+                    style: const TextStyle(fontSize: 18, color: Colors.black),
+                  );
+                } else if (snapshot.hasError) {
+                  return const Text(
+                    "Error fetching species name",
+                    style: TextStyle(color: Colors.red),
+                  );
+                } else {
+                  return const Text(
+                    "Loading...",
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }  
+Widget buildRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Text(
+            "$label: ",
+            style: const TextStyle(fontSize: 18, color: Colors.black),
           ),
           Flexible(
             child: Text(
               value,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(fontSize: 18, color: Colors.black),
             ),
           ),
         ],
