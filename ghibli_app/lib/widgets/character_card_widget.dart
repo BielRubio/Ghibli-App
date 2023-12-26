@@ -48,8 +48,8 @@ class _CharacterCardState extends State<CharacterCard> {
                     buildRow("Age", widget.character.age),
                     buildRow("Eye Color", widget.character.eye_color),
                     buildRow("Hair Color", widget.character.hair_color),
-                    buildSpeciesRow("Specie", widget.character.specieID),
-                    buildMovieRow("Movie", widget.character.filmID),
+                    buildRow("Specie", widget.character.specieName),
+                    buildRow("Movie", widget.character.filmName),
               
                   ],
                 ),
@@ -61,78 +61,8 @@ class _CharacterCardState extends State<CharacterCard> {
     );
   }
 
-Widget buildSpeciesRow(String label, String apiUrl) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          Text(
-            "$label: ",
-            style: const TextStyle(fontSize: 18, color: Colors.black),
-          ),
-          Flexible(
-            child: FutureBuilder<String>(
-              future: CharacterApi.fetchSpeciesName(apiUrl),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(
-                    snapshot.data!,
-                    style: const TextStyle(fontSize: 18, color: Colors.black),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Text(
-                    "Error fetching species name",
-                    style: TextStyle(fontSize: 18, color: Colors.red),
-                  );
-                } else {
-                  return const Text(
-                    "Loading...",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  );
-                }
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-Widget buildMovieRow(String label, String apiUrl) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          Text(
-            "$label: ",
-            style: const TextStyle(fontSize: 18, color: Colors.black),
-          ),
-          Flexible(
-            child: FutureBuilder<String>(
-              future: CharacterApi.fetchMovieName(apiUrl),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(
-                    snapshot.data!,
-                    style: const TextStyle(fontSize: 18, color: Colors.black),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Text(
-                    "Error fetching species name",
-                    style: TextStyle(color: Colors.red),
-                  );
-                } else {
-                  return const Text(
-                    "Loading...",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  );
-                }
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }  
+
+
 Widget buildRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),

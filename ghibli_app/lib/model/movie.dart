@@ -1,5 +1,7 @@
+import 'package:ghibli_app/model/character.api.dart';
+
 class Character {
-  final String id, name, gender, age, eye_color, hair_color, specieID, filmID;
+  final String id, name, gender, age, eye_color, hair_color, specieID, filmID, specieName, filmName;
   Character(
       {required this.id,
       required this.name,
@@ -8,13 +10,16 @@ class Character {
       required this.eye_color,
       required this.hair_color,
       required this.specieID,
-      required this.filmID});
+      required this.filmID,
+      required this.specieName,
+      required this.filmName});
 
-  factory Character.fromJson(dynamic json) {
-    
+  static Future<Character> fromJson(dynamic json) async {    
     List<dynamic> films = json['films'];
     String firstFilmUrl = films.isNotEmpty ? films[0] : "";
-
+    String speciename = await CharacterApi.fetchSpeciesName(json['species']);
+    String filmname = await CharacterApi.fetchMovieName(firstFilmUrl);
+    
     return Character(
       id: json['id'] as String,
       name: json['name'] as String,
@@ -24,14 +29,21 @@ class Character {
       hair_color: json['hair_color'] as String,
       specieID: json['species'] as String,
       filmID: firstFilmUrl,
+      specieName: speciename,
+      filmName: filmname,
     );
   }
 
-  static List<Location> moviesFromSnapshot(List snapshot) {
-    return snapshot.map((data) {
-      return Location.fromJson(data);
-    }).toList();
-  }
+static Future<List<Character>> moviesFromSnapshot(List snapshot) async {
+  List<Future<Character>> futures = snapshot.map((data) {
+    return Character.fromJson(data);
+  }).toList();
+
+  // Esperar a que todos los futuros se completen
+  List<Character> characters = await Future.wait(futures);
+
+  return characters;
+}
 
   @override
   String toString() {
