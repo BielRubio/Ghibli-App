@@ -3,6 +3,7 @@ import 'package:ghibli_app/screens/locations_screen.dart';
 import 'package:ghibli_app/screens/characters_screen.dart';
 import 'package:ghibli_app/screens/settings_screen.dart';
 import 'package:ghibli_app/screens/species_screen.dart';
+import 'package:flutter/services.dart';
 
 class widget_side_bar extends StatelessWidget {
   const widget_side_bar({
@@ -65,7 +66,9 @@ class widget_side_bar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Exit App'),
-            onTap: () {},
+            onTap: () async {
+              await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+            },
           ),
         ],
       ),

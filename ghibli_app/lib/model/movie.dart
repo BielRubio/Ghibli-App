@@ -61,29 +61,47 @@ class Character {
 }
 
 class Specie {
-  final String id, name, classification, eye_colors, hair_colors, firstMovie;
+  final String id,
+      name,
+      classification,
+      eye_colors,
+      hair_colors,
+      firstMovie,
+      film_name;
   Specie(
       {required this.id,
       required this.name,
       required this.classification,
       required this.eye_colors,
       required this.hair_colors,
-      required this.firstMovie});
+      required this.firstMovie,
+      required this.film_name});
 
-  factory Specie.fromJson(dynamic json) {
+  static Future<Specie> fromJson(dynamic json) async {
+    List<dynamic> films = json['films'];
+    String firstFilmUrl = films.isNotEmpty ? films[0] : "";
+    String filmname = await CharacterApi.fetchMovieName(firstFilmUrl);
+
     return Specie(
       id: json['id'] as String,
       name: json['name'] as String,
       classification: json['classification'] as String,
       eye_colors: json['eye_colors'] as String,
       hair_colors: json['hair_colors'] as String,
-      firstMovie: json['firstMovie'] as String,
+      firstMovie: firstFilmUrl,
+      film_name: filmname,
     );
   }
-  static List<Specie> moviesFromSnapshot(List snapshot) {
-    return snapshot.map((data) {
+
+  static Future<List<Specie>> moviesFromSnapshot(List snapshot) async {
+    List<Future<Specie>> futures = snapshot.map((data) {
       return Specie.fromJson(data);
     }).toList();
+
+    // Esperar a que todos los futuros se completen
+    List<Specie> species = await Future.wait(futures);
+
+    return species;
   }
 
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/screens/home_screen.dart';
-import 'package:ghibli_app/screens/settings_screen.dart';
 
 void main() {
   runApp(const MyApp());
