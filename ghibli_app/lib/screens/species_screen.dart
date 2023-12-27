@@ -29,6 +29,32 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 125, 189, 125),
+        toolbarHeight: 80,
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(width: 10),
+            Text(
+              'ALL SPECIES',
+              textScaleFactor: 2,
+              style: TextStyle(fontFamily: 'Ghibli'),
+            ),
+          ],
+        ),
+      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: _species.length,
+              itemBuilder: (context, index) {
+                return SpeciesCard(
+                  species: _species[index],
+                );
+              },
+            ),
+    );
   }
 }

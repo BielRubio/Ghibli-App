@@ -3,7 +3,7 @@ import 'package:ghibli_app/model/movie.dart';
 import 'package:http/http.dart' as http;
 
 class SpeciesApi {
-  static Future<List<Character>> getSpecies() async {
+  static Future<List<Specie>> getSpecies() async {
     var uri = Uri.https('ghibliapi.vercel.app', 'species');
 
     try {
@@ -12,11 +12,8 @@ class SpeciesApi {
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = jsonDecode(response.body);
 
-        // Usar Future.wait para esperar la resolución de todos los futuros
-        List<Character> species = await Future.wait(
-          jsonData.map((data) => Character.fromJson(data)),
-        );
-
+        List<Specie> species =
+            jsonData.map((data) => Specie.fromJson(data)).toList();
         return species;
       } else {
         throw Exception('Failed to fetch species: ${response.statusCode}');

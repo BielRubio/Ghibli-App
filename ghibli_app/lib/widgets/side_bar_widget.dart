@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ghibli_app/screens/locations_screen.dart';
 import 'package:ghibli_app/screens/characters_screen.dart';
 import 'package:ghibli_app/screens/settings_screen.dart';
+import 'package:ghibli_app/screens/species_screen.dart';
 
 class widget_side_bar extends StatelessWidget {
   const widget_side_bar({
@@ -44,7 +45,12 @@ class widget_side_bar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.auto_awesome),
             title: const Text('Species'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SpeciesScreen()));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings),

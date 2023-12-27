@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 
 class SpeciesCard extends StatefulWidget {
-  final Location location;
+  final Specie species;
 
   const SpeciesCard({
     Key? key,
-    required this.location,
+    required this.species,
   }) : super(key: key);
 
   @override

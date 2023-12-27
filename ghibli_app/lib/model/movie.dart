@@ -1,7 +1,16 @@
 import 'package:ghibli_app/model/character.api.dart';
 
 class Character {
-  final String id, name, gender, age, eye_color, hair_color, specieID, filmID, specieName, filmName;
+  final String id,
+      name,
+      gender,
+      age,
+      eye_color,
+      hair_color,
+      specieID,
+      filmID,
+      specieName,
+      filmName;
   Character(
       {required this.id,
       required this.name,
@@ -14,12 +23,12 @@ class Character {
       required this.specieName,
       required this.filmName});
 
-  static Future<Character> fromJson(dynamic json) async {    
+  static Future<Character> fromJson(dynamic json) async {
     List<dynamic> films = json['films'];
     String firstFilmUrl = films.isNotEmpty ? films[0] : "";
     String speciename = await CharacterApi.fetchSpeciesName(json['species']);
     String filmname = await CharacterApi.fetchMovieName(firstFilmUrl);
-    
+
     return Character(
       id: json['id'] as String,
       name: json['name'] as String,
@@ -34,16 +43,16 @@ class Character {
     );
   }
 
-static Future<List<Character>> moviesFromSnapshot(List snapshot) async {
-  List<Future<Character>> futures = snapshot.map((data) {
-    return Character.fromJson(data);
-  }).toList();
+  static Future<List<Character>> moviesFromSnapshot(List snapshot) async {
+    List<Future<Character>> futures = snapshot.map((data) {
+      return Character.fromJson(data);
+    }).toList();
 
-  // Esperar a que todos los futuros se completen
-  List<Character> characters = await Future.wait(futures);
+    // Esperar a que todos los futuros se completen
+    List<Character> characters = await Future.wait(futures);
 
-  return characters;
-}
+    return characters;
+  }
 
   @override
   String toString() {
@@ -52,10 +61,35 @@ static Future<List<Character>> moviesFromSnapshot(List snapshot) async {
 }
 
 class Specie {
-  final String id, name, classification, eye_colors, hair_colors;
-  final Movie firstMovie;
-  const Specie(this.id, this.name, this.classification, this.eye_colors,
-      this.hair_colors, this.firstMovie);
+  final String id, name, classification, eye_colors, hair_colors, firstMovie;
+  Specie(
+      {required this.id,
+      required this.name,
+      required this.classification,
+      required this.eye_colors,
+      required this.hair_colors,
+      required this.firstMovie});
+
+  factory Specie.fromJson(dynamic json) {
+    return Specie(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      classification: json['classification'] as String,
+      eye_colors: json['eye_colors'] as String,
+      hair_colors: json['hair_colors'] as String,
+      firstMovie: json['firstMovie'] as String,
+    );
+  }
+  static List<Specie> moviesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return Specie.fromJson(data);
+    }).toList();
+  }
+
+  @override
+  String toString() {
+    return 'Specie {id: $id,  name: $name,  classification: $classification,  eye_colors: $eye_colors, hair_colors: $hair_colors}';
+  }
 }
 
 class Location {
