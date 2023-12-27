@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
+import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/location.api.dart';
-import 'package:ghibli_app/widgets/location_carad_widget.dart';
+import 'package:ghibli_app/widgets/location_card_widget.dart';
 
 class LocationsScreen extends StatefulWidget {
   const LocationsScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LocationsScreenState createState() => _LocationsScreenState();
 }
 
 class _LocationsScreenState extends State<LocationsScreen> {
   late List<Location> _locations;
+  late List<Movie> _movies;
+
   bool _isLoading = true;
 
   @override
@@ -22,6 +26,8 @@ class _LocationsScreenState extends State<LocationsScreen> {
 
   Future<void> getLoaction() async {
     _locations = await LoactionApi.getLocations();
+    _movies = await MovieApi.getMovies();
+
     setState(() {
       _isLoading = false;
     });
@@ -33,12 +39,16 @@ class _LocationsScreenState extends State<LocationsScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 125, 189, 125),
         toolbarHeight: 80,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 10),
-            Text(
-              'ALL LOCATIONS',
+            Image.asset(
+              "assets/images/logo_ghibli.png",
+              scale: 10,
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'LOCATIONS',
               textScaleFactor: 2,
               style: TextStyle(fontFamily: 'Ghibli'),
             ),
@@ -52,6 +62,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
               itemBuilder: (context, index) {
                 return LocationCard(
                   location: _locations[index],
+                  movie: _movies[index],
                 );
               },
             ),
