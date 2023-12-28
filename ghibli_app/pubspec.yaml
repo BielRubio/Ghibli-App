@@ -65,6 +65,16 @@ flutter:
  assets:
    - assets/images/logo_ghibli.png
    - assets/images/Rotten_Tomatoes.png
+   - assets/images/terrains/forest.png
+   - assets/images/terrains/hill.png
+   - assets/images/terrains/marsh.png
+   - assets/images/terrains/ocean.png
+   - assets/images/terrains/mountain.png
+   - assets/images/terrains/plain.png
+   - assets/images/terrains/city.png
+   - assets/images/terrains/river.png
+   - assets/images/terrains/TODO.png
+   
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -113,24 +113,20 @@ class Specie {
 }
 
 class Location {
-  final String id, name, climate, terrain, firstMovie, filmname, filmimage;
+  final String id, name, climate, terrain, firstMovie, film_name;
   Location({
     required this.id,
     required this.name,
     required this.climate,
     required this.terrain,
     required this.firstMovie,
-    required this.filmname,
-    required this.filmimage,
+    required this.film_name,
   });
 
   static Future<Location> fromJson(dynamic json) async {
     List<dynamic> films = json['films'];
     String firstFilmUrl = films.isNotEmpty ? films[0] : "";
-    String FilmImage = films.isNotEmpty ? films[0] : "";
-
-    String filmName = await LocationApi.fetchMovieName(firstFilmUrl);
-    String filmImage = await MovieApi.fetchMovieImage(FilmImage);
+    String filmname = await LocationApi.fetchMovieName_Locations(firstFilmUrl);
 
     return Location(
       id: json['id'] as String,
@@ -138,8 +134,7 @@ class Location {
       climate: json['climate'] as String,
       terrain: json['terrain'] as String,
       firstMovie: firstFilmUrl,
-      filmname: filmName,
-      filmimage: filmImage,
+      film_name: filmname,
     );
   }
 

@@ -18,14 +18,30 @@ class LocationApi {
 
         return locations;
       } else {
-        throw Exception('Failed to fetch movies: ${response.statusCode}');
+        throw Exception('Failed to fetch Locations: ${response.statusCode}');
       }
     } on Exception catch (e) {
-      throw Exception('Failed to fetch movies: $e');
+      throw Exception('Failed to fetch Locations: $e');
     }
   }
 
-  static Future<String> fetchMovieName(String apiUrl) async {
+  static Future<String> fetchLocationsName(String apiUrl) async {
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final String name = data['name'];
+        return name;
+      } else {
+        throw Exception('Failed to load Locations name');
+      }
+    } catch (error) {
+      return "Unknown";
+    }
+  }
+
+  static Future<String> fetchMovieName_Locations(String apiUrl) async {
     try {
       final response = await http.get(Uri.parse(apiUrl));
 

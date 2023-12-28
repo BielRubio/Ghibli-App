@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/model/location.api.dart';
+
+import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/widgets/location_card_widget.dart';
 
 class LocationsScreen extends StatefulWidget {
-  const LocationsScreen({super.key});
+  const LocationsScreen({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _LocationsScreenState createState() => _LocationsScreenState();
 }
 
 class _LocationsScreenState extends State<LocationsScreen> {
   late List<Location> _locations;
+  Map<String, List<Location>> _locationsByMovie = {};
 
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    getLoaction();
+    getLocations();
   }
 
-  Future<void> getLoaction() async {
+  Future<void> getLocations() async {
     _locations = await LocationApi.getLocations();
+
+    // Agrupar las ubicaciones por películas
+    _locationsByMovie = {};
+    for (var location in _locations) {
+      if (!_locationsByMovie.containsKey(location.film_name)) {
+        _locationsByMovie[location.film_name] = [];
+      }
+      _locationsByMovie[location.film_name]!.add(location);
+    }
 
     setState(() {
       _isLoading = false;
@@ -55,10 +65,36 @@ class _LocationsScreenState extends State<LocationsScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: _locations.length,
+              itemCount: _locationsByMovie.length,
               itemBuilder: (context, index) {
-                return LocationCard(
-                  location: _locations[index],
+                var movieName = _locationsByMovie.keys.toList()[index];
+                var movieLocations = _locationsByMovie[movieName]!;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '$movieName',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Ghibli',
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: movieLocations.length,
+                      itemBuilder: (context, index) {
+                        return LocationCard(
+                          location: movieLocations[index],
+                        );
+                      },
+                    ),
+                  ],
                 );
               },
             ),

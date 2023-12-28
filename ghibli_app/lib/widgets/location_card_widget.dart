@@ -14,8 +14,33 @@ class LocationCard extends StatefulWidget {
 }
 
 class _LocationCardState extends State<LocationCard> {
+  String _getImagePathForTerrain(String terrain) {
+    switch (terrain) {
+      case 'Mountain':
+        return 'assets/images/terrains/mountain.png';
+      case 'Hill':
+        return 'assets/images/terrains/hill.png';
+      case 'Plain':
+        return 'assets/images/terrains/plain.png';
+      case 'Ocean':
+        return 'assets/images/terrains/ocean.png';
+      case 'Marsh':
+        return 'assets/images/terrains/marsh.png';
+      case 'Forest':
+        return 'assets/images/terrains/forest.png';
+      case 'River':
+        return 'assets/images/terrains/river.png';
+      case 'City':
+        return 'assets/images/terrains/city.png';
+      default:
+        return 'assets/images/terrains/TODO.png';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String imagePath = _getImagePathForTerrain(widget.location.terrain);
+
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -35,10 +60,14 @@ class _LocationCardState extends State<LocationCard> {
             spreadRadius: -6.0,
           ),
         ],
-        // image: DecorationImage(
-        //     image: NetworkImage(),
-        //     fit: BoxFit.cover,
-        //     opacity: 0.1),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.4),
+            BlendMode.dstATop,
+          ),
+        ),
       ),
       child: Align(
           alignment: Alignment.center,
@@ -50,8 +79,9 @@ class _LocationCardState extends State<LocationCard> {
                   Text(
                     widget.location.name,
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 30),
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 30,
+                    ),
                   ),
                   const SizedBox(width: 7),
                   Row(
