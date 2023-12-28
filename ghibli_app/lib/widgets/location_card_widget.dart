@@ -3,12 +3,10 @@ import 'package:ghibli_app/model/movie.dart';
 
 class LocationCard extends StatefulWidget {
   final Location location;
-  final Movie movie;
 
   const LocationCard({
     Key? key,
     required this.location,
-    required this.movie,
   }) : super(key: key);
 
   @override
@@ -37,10 +35,10 @@ class _LocationCardState extends State<LocationCard> {
             spreadRadius: -6.0,
           ),
         ],
-        image: DecorationImage(
-            image: NetworkImage(widget.movie.image),
-            fit: BoxFit.cover,
-            opacity: 0.1),
+        // image: DecorationImage(
+        //     image: NetworkImage(),
+        //     fit: BoxFit.cover,
+        //     opacity: 0.1),
       ),
       child: Align(
           alignment: Alignment.center,

@@ -1,4 +1,6 @@
 import 'package:ghibli_app/model/character.api.dart';
+import 'package:ghibli_app/model/location.api.dart';
+import 'package:ghibli_app/model/movie.api.dart';
 
 class Character {
   final String id,
@@ -111,30 +113,45 @@ class Specie {
 }
 
 class Location {
-  final String id, name, climate, terrain;
-  Location(
-      {required this.id,
-      required this.name,
-      required this.climate,
-      required this.terrain});
+  final String id, name, climate, terrain, firstMovie, filmname, filmimage;
+  Location({
+    required this.id,
+    required this.name,
+    required this.climate,
+    required this.terrain,
+    required this.firstMovie,
+    required this.filmname,
+    required this.filmimage,
+  });
 
-  factory Location.fromJson(dynamic json) {
+  static Future<Location> fromJson(dynamic json) async {
+    List<dynamic> films = json['films'];
+    String firstFilmUrl = films.isNotEmpty ? films[0] : "";
+    String FilmImage = films.isNotEmpty ? films[0] : "";
+
+    String filmName = await LocationApi.fetchMovieName(firstFilmUrl);
+    String filmImage = await MovieApi.fetchMovieImage(FilmImage);
+
     return Location(
       id: json['id'] as String,
       name: json['name'] as String,
       climate: json['climate'] as String,
       terrain: json['terrain'] as String,
-
-      //people: List<Character>.from(json['people'].map((x) => Character.fromJson(x))),
-      //species: List<Specie>.from(json['species'].map((x) => Specie.fromJson(x))),
-      //locations: List<Location>.from(json['locations'].map((x) => Location.fromJson(x))),
+      firstMovie: firstFilmUrl,
+      filmname: filmName,
+      filmimage: filmImage,
     );
   }
 
-  static List<Location> moviesFromSnapshot(List snapshot) {
-    return snapshot.map((data) {
+  static Future<List<Location>> moviesFromSnapshot(List snapshot) async {
+    List<Future<Location>> futures = snapshot.map((data) {
       return Location.fromJson(data);
     }).toList();
+
+    // Esperar a que todos los futuros se completen
+    List<Location> locations = await Future.wait(futures);
+
+    return locations;
   }
 
   @override

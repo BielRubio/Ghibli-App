@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
-import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/location.api.dart';
 import 'package:ghibli_app/widgets/location_card_widget.dart';
 
@@ -14,7 +13,6 @@ class LocationsScreen extends StatefulWidget {
 
 class _LocationsScreenState extends State<LocationsScreen> {
   late List<Location> _locations;
-  late List<Movie> _movies;
 
   bool _isLoading = true;
 
@@ -25,8 +23,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
   }
 
   Future<void> getLoaction() async {
-    _locations = await LoactionApi.getLocations();
-    _movies = await MovieApi.getMovies();
+    _locations = await LocationApi.getLocations();
 
     setState(() {
       _isLoading = false;
@@ -62,7 +59,6 @@ class _LocationsScreenState extends State<LocationsScreen> {
               itemBuilder: (context, index) {
                 return LocationCard(
                   location: _locations[index],
-                  movie: _movies[index],
                 );
               },
             ),

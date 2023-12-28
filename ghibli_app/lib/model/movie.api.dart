@@ -23,5 +23,19 @@ class MovieApi {
     }
   }
 
-  
+  static Future<String> fetchMovieImage(String apiUrl) async {
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final String image = data['image'];
+        return image;
+      } else {
+        throw Exception('Failed to load species name');
+      }
+    } catch (error) {
+      return "Unknown";
+    }
+  }
 }
