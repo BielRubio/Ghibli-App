@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/movie.dart';
+import 'package:ghibli_app/screens/movie_sceen.dart';
 import 'package:ghibli_app/widgets/movie_card_widget.dart';
 import 'package:ghibli_app/widgets/search_bar.dart';
 import 'package:ghibli_app/widgets/side_bar_widget.dart';
@@ -63,8 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 itemCount: _movies.length,
                 itemBuilder: (context, index) {
-                  return MovieCard(
-                    movie: _movies[index],
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => MovieScreen(movie: _movies[index])),
+                        );
+                    },
+                    child: MovieCard(
+                      movie: _movies[index],
+                    ),
                   );
                 },
               ),
