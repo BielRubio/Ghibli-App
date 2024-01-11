@@ -16,24 +16,31 @@ class SpeciesCard extends StatefulWidget {
 class _SpeciesCardState extends State<SpeciesCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
+    return Card(
+      elevation: 5,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      width: 200,
-      height: 220,
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 176, 182, 178),
-        border: Border.all(
-          width: 5,
-          color: Color.fromARGB(255, 70, 71, 71),
-        ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      child: Align(
-        alignment: Alignment.center,
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
         child: Row(
           children: [
             Image.asset(
               "assets/images/logo_ghibli.png",
+              width: 50,
+              height: 50,
             ),
             Expanded(
               child: Padding(
@@ -45,9 +52,9 @@ class _SpeciesCardState extends State<SpeciesCard> {
                     Text(
                       widget.species.name,
                       style: const TextStyle(
-                        fontSize: 22,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -57,14 +64,14 @@ class _SpeciesCardState extends State<SpeciesCard> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Colors.black,
                         ),
                       ),
                       Text(
                         widget.species.classification,
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Colors.black,
                         ),
                       ),
                     ]),
@@ -74,7 +81,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Colors.black,
                         ),
                       ),
                       Flexible(
@@ -82,7 +89,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
                           widget.species.eye_colors,
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -93,7 +100,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Colors.black,
                         ),
                       ),
                       Flexible(
@@ -101,7 +108,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
                           widget.species.hair_colors,
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -112,14 +119,14 @@ class _SpeciesCardState extends State<SpeciesCard> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Colors.black,
                         ),
                       ),
                       Text(
                         widget.species.film_name,
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Colors.black,
                         ),
                       ),
                     ]),
