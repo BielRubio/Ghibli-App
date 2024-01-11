@@ -65,21 +65,14 @@ class Character {
 }
 
 class Specie {
-  final String id,
-      name,
-      classification,
-      eye_colors,
-      hair_colors,
-      firstMovie,
-      film_name;
+  final String id, name, classification, eye_colors, hair_colors, firstMovie;
   Specie(
       {required this.id,
       required this.name,
       required this.classification,
       required this.eye_colors,
       required this.hair_colors,
-      required this.firstMovie,
-      required this.film_name});
+      required this.firstMovie});
 
   static Future<Specie> fromJson(dynamic json) async {
     List<dynamic> films = json['films'];
@@ -93,7 +86,6 @@ class Specie {
       eye_colors: json['eye_colors'] as String,
       hair_colors: json['hair_colors'] as String,
       firstMovie: firstFilmUrl,
-      film_name: filmname,
     );
   }
 

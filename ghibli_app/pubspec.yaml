@@ -74,6 +74,13 @@ flutter:
    - assets/images/terrains/city.png
    - assets/images/terrains/river.png
    - assets/images/terrains/TODO.png
+   - assets/images/species/totoro.png
+   - assets/images/species/chihiro.png
+   - assets/images/species/cat.png
+   - assets/images/species/dragon.png
+   - assets/images/species/deer.png
+   - assets/images/species/spirit.png
+   - assets/images/species/god.png
    
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
