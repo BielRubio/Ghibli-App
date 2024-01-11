@@ -12,16 +12,24 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> {
   late List<Character> _characters;
+  Map<String, List<Character>> _charactersByMovie = {};
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    getLoaction();
+    getCharacters();
   }
 
-  Future<void> getLoaction() async {
+  Future<void> getCharacters() async {
     _characters = await CharacterApi.getCharacters();
+    _charactersByMovie = {};
+    for (var character in _characters) {
+      if (!_charactersByMovie.containsKey(character.filmName)) {
+        _charactersByMovie[character.filmName] = [];
+      }
+      _charactersByMovie[character.filmName]!.add(character);
+    }
     setState(() {
       _isLoading = false;
     });
@@ -49,10 +57,36 @@ class _CharactersScreenState extends State<CharactersScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: _characters.length,
+              itemCount: _charactersByMovie.length,
               itemBuilder: (context, index) {
-                return CharacterCard(
-                  character: _characters[index],
+                var movieName = _charactersByMovie.keys.toList()[index];
+                var movieCharacters = _charactersByMovie[movieName]!;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        movieName,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Ghibli',
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: movieCharacters.length,
+                      itemBuilder: (context, index) {
+                        return CharacterCard(
+                          character: movieCharacters[index],
+                        );
+                      },
+                    ),
+                  ],
                 );
               },
             ),

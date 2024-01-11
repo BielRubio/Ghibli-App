@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ghibli_app/model/character.api.dart';
 import 'package:ghibli_app/model/location.api.dart';
 import 'package:ghibli_app/model/movie.api.dart';

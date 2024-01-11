@@ -14,7 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late List<Movie> _movies;
+  
+  late List<Movie> _movies = const [];
   bool _isLoading = true;
 
   @override
@@ -30,6 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+
+  List<Movie> getLikedMovies() {
+    return getLikedList(_movies);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +85,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SearchBarWidget(),
             ]),
-      drawer: const widget_side_bar(),
+      drawer: widget_side_bar(likedmovies: getLikedMovies(),),
     );
   }
+}
+
+List<Movie> getLikedList(List<Movie> movies) {
+  return movies.where((movie) => movie.liked).toList();
 }
