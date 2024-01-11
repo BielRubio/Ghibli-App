@@ -14,8 +14,31 @@ class SpeciesCard extends StatefulWidget {
 }
 
 class _SpeciesCardState extends State<SpeciesCard> {
+  String getSpeciesImage(String speciesName) {
+    switch (speciesName) {
+      case "Human":
+        return "assets/images/species/chihiro.png";
+      case "Deer":
+        return "assets/images/species/deer.png";
+      case "Spirit":
+        return "assets/images/species/spirit.png";
+      case "God":
+        return "assets/images/species/god.png";
+      case "Cat":
+        return "assets/images/species/cat.png";
+      case "Totoro":
+        return "assets/images/species/totoro.png";
+      case "Dragon":
+        return "assets/images/species/dragon.png";
+      default:
+        return "assets/images/ghibli_logo.png";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    String speciesImage = getSpeciesImage(widget.species.name);
+
     return Card(
       elevation: 5,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -28,7 +51,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: const Color.fromARGB(255, 102, 102, 102).withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
               offset: const Offset(0, 3),
@@ -38,9 +61,9 @@ class _SpeciesCardState extends State<SpeciesCard> {
         child: Row(
           children: [
             Image.asset(
-              "assets/images/logo_ghibli.png",
-              width: 50,
-              height: 50,
+              speciesImage,
+              width: 100,
+              height: 100,
             ),
             Expanded(
               child: Padding(
@@ -84,7 +107,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
                           color: Colors.black,
                         ),
                       ),
-                      Flexible(
+                      Expanded(
                         child: Text(
                           widget.species.eye_colors,
                           style: const TextStyle(
@@ -103,30 +126,13 @@ class _SpeciesCardState extends State<SpeciesCard> {
                           color: Colors.black,
                         ),
                       ),
-                      Flexible(
+                      Expanded(
                         child: Text(
                           widget.species.hair_colors,
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                           ),
-                        ),
-                      ),
-                    ]),
-                    Row(children: [
-                      const Text(
-                        "Film: ",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text(
-                        widget.species.film_name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
                         ),
                       ),
                     ]),
