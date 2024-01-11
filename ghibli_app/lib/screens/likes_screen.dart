@@ -31,10 +31,12 @@ class _LikesScreenState extends State<LikesScreen> {
               scale: 10,
             ),
             const SizedBox(width: 10),
-            const Text(
-              'GHIBLI REALM',
-              textScaleFactor: 2,
-              style: TextStyle(fontFamily: 'Ghibli'),
+            const Expanded(
+              child: Text(
+                'FAVORITE FILMS',
+                textScaleFactor: 2,
+                style: TextStyle(fontFamily: 'Ghibli'),
+              ),
             ),
           ],
         ),

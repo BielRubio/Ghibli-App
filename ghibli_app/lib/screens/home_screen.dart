@@ -85,11 +85,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SearchBarWidget(),
             ]),
-      drawer: widget_side_bar(likedmovies: getLikedMovies(),),
+      drawer:  widget_side_bar(getLikedMovies: getLikedMovies),
+      
     );
   }
 }
 
 List<Movie> getLikedList(List<Movie> movies) {
-  return movies.where((movie) => movie.liked).toList();
+  return movies.where((movie) => movie.liked == true).toList();
 }

@@ -55,12 +55,12 @@ class _CharacterCardState extends State<CharacterCard> {
                           fontSize: 25,
                           fontFamily: "Ghibli"),
                     ),
-                    buildRow("Gender", widget.character.gender),
-                    buildRow("Age", widget.character.age),
-                    buildRow("Eye Color", widget.character.eye_color),
-                    buildRow("Hair Color", widget.character.hair_color),
-                    buildRow("Specie", widget.character.specieName),
-                    buildRow("Movie", widget.character.filmName),
+                    buildRow("Gender", widget.character.gender, Icon(Icons.wc_rounded)),
+                    buildRow("Age", widget.character.age, Icon(Icons.access_time_rounded)),
+                    buildRow("Eye Color", widget.character.eye_color, Icon(Icons.remove_red_eye_outlined)),
+                    buildRow("Hair Color", widget.character.hair_color, Icon(Icons.face_2)),
+                    buildRow("Specie", widget.character.specieName, Icon(Icons.auto_awesome)),
+                    buildRow("Movie", widget.character.filmName, Icon(Icons.movie_outlined)),
                   ],
                 ),
               ),
@@ -71,13 +71,14 @@ class _CharacterCardState extends State<CharacterCard> {
     );
   }
 
-  Widget buildRow(String label, String value) {
+  Widget buildRow(String label, String value, Icon icon) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
+          Icon(icon.icon),
           Text(
-            "$label: ",
+            " $label: ",
             style: const TextStyle(fontSize: 18, color: Colors.black),
           ),
           Flexible(

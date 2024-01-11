@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghibli_app/screens/home_screen.dart';
 import 'package:ghibli_app/screens/locations_screen.dart';
 import 'package:ghibli_app/screens/characters_screen.dart';
 import 'package:ghibli_app/screens/settings_screen.dart';
@@ -9,12 +10,11 @@ import 'package:ghibli_app/model/movie.dart';
 
 class widget_side_bar extends StatelessWidget {
 
-  final List<Movie> likedmovies;
+  final List<Movie> Function() getLikedMovies;
 
-  const widget_side_bar({
+  widget_side_bar({
     super.key,
-    required this.likedmovies
-
+    required this.getLikedMovies,
   });
 
   @override
@@ -29,6 +29,7 @@ class widget_side_bar extends StatelessWidget {
             iconColor: const Color.fromARGB(255, 216, 38, 26),
             title: const Text('Favorite Films'),
             onTap: () {
+              List<Movie> likedmovies = getLikedMovies();
               Navigator.push(
                   context,
                   MaterialPageRoute(

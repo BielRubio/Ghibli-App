@@ -16,7 +16,7 @@ class CharacterApi {
       List<Character> characters = await Future.wait(
         jsonData.map((data) => Character.fromJson(data)),
       );
-
+     
       return characters;
     } else {
       throw Exception('Failed to fetch characters: ${response.statusCode}');
