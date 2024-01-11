@@ -19,10 +19,17 @@ class _CharacterCardState extends State<CharacterCard> {
       padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromRGBO(103, 196, 123, 1),
+          color: widget.character.gender == "Male"
+              ? Color.fromARGB(255, 111, 158, 235) // Color azul para Male
+              : widget.character.gender == "Female"
+                  ? const Color.fromRGBO(
+                      244, 144, 177, 1) // Color rosa para Female
+                  : Color.fromARGB(255, 137, 230, 157), // Color verde por defecto
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
-              color: const Color.fromARGB(255, 111, 153, 111), width: 3),
+            color: Color.fromARGB(255, 92, 92, 92),
+            width: 3,
+          ),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
