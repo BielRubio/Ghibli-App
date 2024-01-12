@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ghibli_app/widgets/side_bar_widget.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key, required this.movie});
@@ -12,7 +13,12 @@ class MovieScreen extends StatefulWidget {
 }
 
 class _MovieScreenState extends State<MovieScreen> {
+  late List<Movie> _movies = const [];
   @override
+  List<Movie> getLikedMovies() {
+    return getLikedList(_movies);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -109,7 +115,8 @@ class _MovieScreenState extends State<MovieScreen> {
                         ),
                         const Spacer(flex: 1),
                         RatingBarIndicator(
-                          rating: (double.parse(widget.movie.rt_score) / 100 * 5),
+                          rating:
+                              (double.parse(widget.movie.rt_score) / 100 * 5),
                           itemCount: 5,
                           itemSize: 40,
                           itemBuilder: (context, _) => const Icon(
@@ -172,6 +179,11 @@ class _MovieScreenState extends State<MovieScreen> {
           ),
         ],
       ),
+      endDrawer: widget_side_bar(getLikedMovies: getLikedMovies),
     );
   }
+}
+
+List<Movie> getLikedList(List<Movie> movies) {
+  return movies.where((movie) => movie.liked == true).toList();
 }
