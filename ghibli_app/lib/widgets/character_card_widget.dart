@@ -60,7 +60,6 @@ class _CharacterCardState extends State<CharacterCard> {
                     buildRow("Eye Color", widget.character.eye_color, Icon(Icons.remove_red_eye_outlined)),
                     buildRow("Hair Color", widget.character.hair_color, Icon(Icons.face_2)),
                     buildRow("Specie", widget.character.specieName, Icon(Icons.auto_awesome)),
-                    buildRow("Movie", widget.character.filmName, Icon(Icons.movie_outlined)),
                   ],
                 ),
               ),

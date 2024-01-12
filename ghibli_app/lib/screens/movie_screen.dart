@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:ghibli_app/widgets/side_bar_widget.dart';
+import 'package:ghibli_app/widgets/movie_side_bar_widget.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key, required this.movie});
@@ -179,7 +179,7 @@ class _MovieScreenState extends State<MovieScreen> {
           ),
         ],
       ),
-      endDrawer: widget_side_bar(getLikedMovies: getLikedMovies),
+      endDrawer: widget_movie_side_bar(movieTitle: widget.movie.title,),
     );
   }
 }

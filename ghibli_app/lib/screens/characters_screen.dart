@@ -46,7 +46,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
           children: [
             SizedBox(width: 10),
             Flexible(child:Text(
-              'ALL CHARACTERS',
+              'ALL CHARACTERS  ',
               textScaleFactor: 1.8,
               style: TextStyle(fontFamily: 'Ghibli'),
             ), ),
