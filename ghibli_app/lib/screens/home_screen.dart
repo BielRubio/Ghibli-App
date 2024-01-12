@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 125, 189, 125),
         toolbarHeight: 80,
+
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -60,30 +61,32 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : Stack(children: [
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0,
-                  childAspectRatio: 0.7,
-                ),
-                itemCount: _movies.length,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: (){
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => MovieScreen(movie: _movies[index])),
-                        );
-                    },
-                    child: MovieCard(
-                      movie: _movies[index],
-                    ),
-                  );
-                },
-              ),
+          : Column(children: [
               const SearchBarWidget(),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 8.0,
+                    childAspectRatio: 0.7,
+                  ),
+                  itemCount: _movies.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(builder: (context) => MovieScreen(movie: _movies[index])),
+                          );
+                      },
+                      child: MovieCard(
+                        movie: _movies[index],
+                      ),
+                    );
+                  },
+                ),
+              ),
             ]),
       drawer:  widget_side_bar(getLikedMovies: getLikedMovies),
       

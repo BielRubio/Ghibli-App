@@ -58,7 +58,6 @@ class _MovieScreenState extends State<MovieScreen> {
               opacity: 0.95,
               child: Container(
                 margin: const EdgeInsets.all(50),
-                height: 450,
                 decoration: BoxDecoration(
                   color: Colors.black,
                   boxShadow: [
@@ -70,6 +69,7 @@ class _MovieScreenState extends State<MovieScreen> {
                   ],
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Title  / RunTime / DateOfRelease
