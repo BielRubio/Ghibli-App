@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/movie.dart';
-import 'package:ghibli_app/screens/movie_sceen.dart';
+import 'package:ghibli_app/screens/movie_screen.dart';
 import 'package:ghibli_app/widgets/movie_card_widget.dart';
 import 'package:ghibli_app/widgets/search_bar.dart';
 import 'package:ghibli_app/widgets/side_bar_widget.dart';

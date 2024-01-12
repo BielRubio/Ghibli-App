@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
-import 'package:ghibli_app/screens/movie_sceen.dart';
+import 'package:ghibli_app/screens/movie_screen.dart';
 import 'package:ghibli_app/widgets/movie_card_widget.dart';
 
 class LikesScreen extends StatefulWidget {
