@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   late List<Movie> _movies = const [];
   bool _isLoading = true;
 
@@ -31,18 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
   List<Movie> getLikedMovies() {
     return getLikedList(_movies);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 125, 189, 125),
         toolbarHeight: 80,
-
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -74,11 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: _movies.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
-                          context, 
-                          MaterialPageRoute(builder: (context) => MovieScreen(movie: _movies[index])),
-                          );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MovieScreen(movie: _movies[index])),
+                        );
                       },
                       child: MovieCard(
                         movie: _movies[index],
@@ -88,8 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ]),
-      drawer:  widget_side_bar(getLikedMovies: getLikedMovies),
-      
+      endDrawer: widget_side_bar(getLikedMovies: getLikedMovies),
     );
   }
 }
