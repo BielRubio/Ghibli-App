@@ -80,21 +80,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisCount: crossAxisCount,
                         crossAxisSpacing: 8.0,
                         mainAxisSpacing: 8.0,
-                        childAspectRatio: 0.7,
+                        childAspectRatio:
+                            0.7, // Ajusta este valor según tus necesidades
                       ),
                       itemCount: _movies.length,
                       itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
+                        return Container(
+                          width:
+                              200, // Ajusta el ancho de la tarjeta según tus necesidades
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
                                   builder: (context) =>
-                                      MovieScreen(movie: _movies[index])),
-                            );
-                          },
-                          child: MovieCard(
-                            movie: _movies[index],
+                                      MovieScreen(movie: _movies[index]),
+                                ),
+                              );
+                            },
+                            child: MovieCard(
+                              movie: _movies[index],
+                            ),
                           ),
                         );
                       },

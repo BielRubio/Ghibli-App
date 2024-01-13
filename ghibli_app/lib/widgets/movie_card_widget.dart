@@ -61,7 +61,9 @@ class _MovieCardState extends State<MovieCard> {
                 Flexible(
                   child: Container(
                     padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 0.5,
+                        vertical: 10), // Ajusta el espacio aquí
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
@@ -70,9 +72,9 @@ class _MovieCardState extends State<MovieCard> {
                       children: [
                         Image.asset(
                           "assets/images/Rotten_Tomatoes.png",
-                          scale: 10,
+                          scale: 11,
                         ),
-                        const SizedBox(width: 5),
+                        const SizedBox(width: 2),
                         Text("${widget.movie.rt_score}/100"),
                       ],
                     ),
@@ -82,7 +84,8 @@ class _MovieCardState extends State<MovieCard> {
                 Flexible(
                   child: Container(
                     padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 6, vertical: 10), // Ajusta el espacio aquí
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
