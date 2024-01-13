@@ -46,29 +46,46 @@ class _SpeciesCardState extends State<SpeciesCard> {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Container(
-        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
-              color: const Color.fromARGB(255, 102, 102, 102).withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
+              color: Color.fromARGB(255, 230, 230, 230).withOpacity(0.0),
+              spreadRadius: 1,
+              blurRadius: 6,
               offset: const Offset(0, 3),
             ),
           ],
-        ),
-        child: Row(
-          children: [
-            Image.asset(
-              speciesImage,
-              width: 100,
-              height: 100,
+          image: DecorationImage(
+            image: AssetImage("assets/images/species/fondo.png"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              const Color.fromARGB(255, 0, 0, 0).withOpacity(0.6),
+              BlendMode.dstATop,
             ),
-            Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          ),
+        ),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              stops: [0.1, 0.7],
+              end: Alignment.centerRight,
+              colors: [Colors.white, Colors.white.withOpacity(0.3)],
+            ),
+          ),
+          child: Row(
+            children: [
+              Image.asset(
+                speciesImage,
+                width: 100,
+                height: 100,
+              ),
+              const SizedBox(width: 20),
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -139,8 +156,8 @@ class _SpeciesCardState extends State<SpeciesCard> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

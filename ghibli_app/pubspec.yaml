@@ -84,6 +84,7 @@ flutter:
    - assets/images/species/deer.png
    - assets/images/species/spirit.png
    - assets/images/species/god.png
+   - assets/images/species/fondo.png
    
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
