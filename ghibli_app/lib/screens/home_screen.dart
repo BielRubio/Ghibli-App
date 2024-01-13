@@ -66,7 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(children: [
-              const SearchBarWidget(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: const SearchBarWidget(),
+              ),
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
