@@ -17,10 +17,10 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
   @override
   void initState() {
     super.initState();
-    getLoaction();
+    getSpecies();
   }
 
-  Future<void> getLoaction() async {
+  Future<void> getSpecies() async {
     _species = await SpeciesApi.getSpecies();
     setState(() {
       _isLoading = false;

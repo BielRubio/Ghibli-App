@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/screens/movie_locations_screen.dart';
 import 'package:ghibli_app/screens/movie_characters_screen.dart';
-import 'package:ghibli_app/screens/species_screen.dart';
+import 'package:ghibli_app/screens/movie_species_screen.dart';
 
 class widget_movie_side_bar extends StatelessWidget {
   final String movieTitle;
@@ -49,7 +49,9 @@ class widget_movie_side_bar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const SpeciesScreen()));
+                      builder: (context) => MovieSpeciesScreen(
+                            Title: movieTitle,
+                          )));
             },
           ),
         ],
