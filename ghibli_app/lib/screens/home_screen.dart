@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late List<Movie> _movies = const [];
+  List<Movie> _filteredMovies = [];
   bool _isLoading = true;
 
   @override
@@ -26,7 +27,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getMovie() async {
     _movies = await MovieApi.getMovies();
     setState(() {
+      _filteredMovies = _movies;
       _isLoading = false;
+    });
+  }
+
+  void _onSearch(String query) {
+    setState(() {
+      _filteredMovies = query.isEmpty
+          ? _movies
+          : _movies
+              .where((movie) =>
+                  movie.title.toLowerCase().contains(query.toLowerCase()))
+              .toList();
+
+      print("Filtered Movies: ");
+      _filteredMovies.forEach((movie) => print(movie.title));
     });
   }
 
@@ -48,10 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
               "assets/images/logo_ghibli.png",
               scale: 10,
             ),
-            Expanded(
+            const Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
                     'GHIBLI REALM',
                     textScaleFactor: 2,
@@ -66,10 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: const SearchBarWidget(),
-              ),
+              SearchBarWidget(onSearch: _onSearch),
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
@@ -83,24 +96,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         childAspectRatio:
                             0.7, // Ajusta este valor según tus necesidades
                       ),
-                      itemCount: _movies.length,
+                      itemCount: _filteredMovies.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                          width:
-                              200, // Ajusta el ancho de la tarjeta según tus necesidades
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      MovieScreen(movie: _movies[index]),
-                                ),
-                              );
-                            },
-                            child: MovieCard(
-                              movie: _movies[index],
-                            ),
+                        if (index >= _filteredMovies.length) {
+                          print("Index out of range: $index");
+                          return Container(
+                            width: 200,
+                          );
+                        }
+                        Movie movie = _filteredMovies[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MovieScreen(movie: movie),
+                              ),
+                            );
+                          },
+                          child: MovieCard(
+                            movie: movie,
                           ),
                         );
                       },
