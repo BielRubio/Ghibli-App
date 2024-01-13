@@ -5,6 +5,7 @@ class SearchBarWidget extends StatefulWidget {
   const SearchBarWidget({Key? key, required this.onSearch}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchBarWidgetState createState() => _SearchBarWidgetState();
 }
 
@@ -29,19 +30,19 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.search,
               color: Colors.grey,
             ),
             const SizedBox(width: 10),
             Expanded(
               child: TextField(
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
                 ),
                 cursorColor: Colors.black,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Buscar...',
                   hintStyle: TextStyle(
                     color: Colors.grey,
@@ -50,7 +51,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 ),
                 onChanged: (text) {
                   widget.onSearch(text);
-                  ;
                 },
               ),
             ),

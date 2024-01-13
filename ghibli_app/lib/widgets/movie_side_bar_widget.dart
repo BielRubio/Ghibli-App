@@ -3,6 +3,7 @@ import 'package:ghibli_app/screens/movie_locations_screen.dart';
 import 'package:ghibli_app/screens/movie_characters_screen.dart';
 import 'package:ghibli_app/screens/movie_species_screen.dart';
 
+// ignore: camel_case_types
 class widget_movie_side_bar extends StatelessWidget {
   final String movieTitle;
 

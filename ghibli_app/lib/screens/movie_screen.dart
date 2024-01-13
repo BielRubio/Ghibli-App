@@ -1,3 +1,5 @@
+// ignore_for_file: override_on_non_overriding_member, annotate_overrides
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,7 +15,7 @@ class MovieScreen extends StatefulWidget {
 }
 
 class _MovieScreenState extends State<MovieScreen> {
-  late List<Movie> _movies = const [];
+  late final List<Movie> _movies = const [];
   @override
   List<Movie> getLikedMovies() {
     return getLikedList(_movies);
@@ -30,6 +32,7 @@ class _MovieScreenState extends State<MovieScreen> {
             SizedBox(width: 10),
             Text(
               'MOVIE     ',
+              // ignore: deprecated_member_use
               textScaleFactor: 2,
               style: TextStyle(fontFamily: 'Ghibli'),
             ),
@@ -109,7 +112,7 @@ class _MovieScreenState extends State<MovieScreen> {
                       children: [
                         const Text(
                           "Rotten Tomatoes:",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                           ),
                         ),
@@ -160,7 +163,7 @@ class _MovieScreenState extends State<MovieScreen> {
                     const SizedBox(height: 25),
                     const Text(
                       "Descripcion:",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                       ),
                     ),
@@ -179,7 +182,9 @@ class _MovieScreenState extends State<MovieScreen> {
           ),
         ],
       ),
-      endDrawer: widget_movie_side_bar(movieTitle: widget.movie.title,),
+      endDrawer: widget_movie_side_bar(
+        movieTitle: widget.movie.title,
+      ),
     );
   }
 }

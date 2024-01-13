@@ -7,6 +7,7 @@ class SpeciesScreen extends StatefulWidget {
   const SpeciesScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SpeciesScreenState createState() => _SpeciesScreenState();
 }
 
@@ -39,6 +40,7 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
             SizedBox(width: 10),
             Text(
               'ALL SPECIES',
+              // ignore: deprecated_member_use
               textScaleFactor: 2,
               style: TextStyle(fontFamily: 'Ghibli'),
             ),

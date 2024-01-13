@@ -1,13 +1,18 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/model/location.api.dart';
 import 'package:ghibli_app/widgets/location_card_widget.dart';
 
 class MovieLocationsScreen extends StatefulWidget {
+  // ignore: non_constant_identifier_names
   final String Title;
+  // ignore: non_constant_identifier_names
   const MovieLocationsScreen({super.key, required this.Title});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MovieLocationsScreenState createState() => _MovieLocationsScreenState();
 }
 
@@ -44,6 +49,7 @@ class _MovieLocationsScreenState extends State<MovieLocationsScreen> {
             Flexible(
               child: Text(
                 '${widget.Title}',
+                // ignore: deprecated_member_use
                 textScaleFactor: 1.8,
                 style: const TextStyle(fontFamily: 'Ghibli'),
               ),
@@ -75,6 +81,7 @@ class _MovieLocationsScreenState extends State<MovieLocationsScreen> {
   }
 }
 
+// ignore: non_constant_identifier_names
 List<Location> GetMovieLocations(List<Location> charToSearch, String FilmName) {
   return charToSearch
       .where((location) => location.film_name == FilmName)

@@ -21,6 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(width: 10),
             Text(
               'SETTINGS',
+              // ignore: deprecated_member_use
               textScaleFactor: 2,
               style: TextStyle(fontFamily: 'Ghibli'),
             ),
@@ -31,7 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Center(
           child: Container(
             margin: const EdgeInsets.all(25),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -85,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 228, 228, 228),
+      backgroundColor: const Color.fromARGB(255, 228, 228, 228),
     );
   }
 }

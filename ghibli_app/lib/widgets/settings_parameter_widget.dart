@@ -42,7 +42,7 @@ class _SettingsParameterToggleState extends State<SettingsParameterToggle> {
             ),
           ),
           widget.toggle
-              ? Container(
+              ? SizedBox(
                   width: 60, // Ajusta el ancho del CupertinoSwitch
                   height: 40, // Ajusta el alto del CupertinoSwitch
                   child: CupertinoSwitch(
@@ -55,7 +55,7 @@ class _SettingsParameterToggleState extends State<SettingsParameterToggle> {
                     },
                   ),
                 )
-              : Container(
+              : SizedBox(
                   width: 60, // Ajusta el ancho del IconButton
                   height: 60, // Ajusta el alto del IconButton
                   child: IconButton(

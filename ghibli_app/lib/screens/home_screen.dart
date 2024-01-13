@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, avoid_function_literals_in_foreach_calls
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.api.dart';
 import 'package:ghibli_app/model/movie.dart';
@@ -10,6 +12,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -70,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'GHIBLI REALM',
+                    // ignore: deprecated_member_use
                     textScaleFactor: 2,
                     style: TextStyle(fontFamily: 'Ghibli'),
                   ),

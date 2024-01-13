@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/model/character.api.dart';
@@ -45,12 +47,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(width: 10),
-            Flexible(child:Text(
-              'ALL CHARACTERS  ',
-              textScaleFactor: 1.8,
-              style: TextStyle(fontFamily: 'Ghibli'),
-            ), ),
-            
+            Flexible(
+              child: Text(
+                'ALL CHARACTERS  ',
+                textScaleFactor: 1.8,
+                style: TextStyle(fontFamily: 'Ghibli'),
+              ),
+            ),
           ],
         ),
       ),

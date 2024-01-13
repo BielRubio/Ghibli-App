@@ -1,13 +1,18 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/model/species.api.dart';
 import 'package:ghibli_app/widgets/species_card_widget.dart';
 
 class MovieSpeciesScreen extends StatefulWidget {
+  // ignore: non_constant_identifier_names
   final String Title;
+  // ignore: non_constant_identifier_names
   const MovieSpeciesScreen({super.key, required this.Title});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MovieSpeciesScreen createState() => _MovieSpeciesScreen();
 }
 
@@ -44,6 +49,7 @@ class _MovieSpeciesScreen extends State<MovieSpeciesScreen> {
             Flexible(
               child: Text(
                 '${widget.Title}',
+                // ignore: deprecated_member_use
                 textScaleFactor: 1.8,
                 style: const TextStyle(fontFamily: 'Ghibli'),
               ),
@@ -75,6 +81,7 @@ class _MovieSpeciesScreen extends State<MovieSpeciesScreen> {
   }
 }
 
+// ignore: non_constant_identifier_names
 List<Specie> GetMovieSpecies(List<Specie> charToSearch, String FilmName) {
   return charToSearch
       .where((specie_) => specie_.film_Name == FilmName)

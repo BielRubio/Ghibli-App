@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:ghibli_app/model/character.api.dart';
@@ -8,6 +10,7 @@ class MovieCharactersScreen extends StatefulWidget {
   const MovieCharactersScreen({super.key, required this.Title});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MovieCharactersScreenState createState() => _MovieCharactersScreenState();
 }
 
@@ -44,6 +47,7 @@ class _MovieCharactersScreenState extends State<MovieCharactersScreen> {
             Flexible(
               child: Text(
                 '${widget.Title}',
+                // ignore: deprecated_member_use
                 textScaleFactor: 1.8,
                 style: const TextStyle(fontFamily: 'Ghibli'),
               ),

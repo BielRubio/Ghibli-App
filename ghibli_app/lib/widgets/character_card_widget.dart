@@ -20,14 +20,15 @@ class _CharacterCardState extends State<CharacterCard> {
       child: Container(
         decoration: BoxDecoration(
           color: widget.character.gender == "Male"
-              ? Color.fromARGB(255, 111, 158, 235) // Color azul para Male
+              ? const Color.fromARGB(255, 111, 158, 235) // Color azul para Male
               : widget.character.gender == "Female"
                   ? const Color.fromRGBO(
                       244, 144, 177, 1) // Color rosa para Female
-                  : Color.fromARGB(255, 137, 230, 157), // Color verde por defecto
+                  : const Color.fromARGB(
+                      255, 137, 230, 157), // Color verde por defecto
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
-            color: Color.fromARGB(255, 92, 92, 92),
+            color: const Color.fromARGB(255, 92, 92, 92),
             width: 3,
           ),
         ),
@@ -55,11 +56,16 @@ class _CharacterCardState extends State<CharacterCard> {
                           fontSize: 25,
                           fontFamily: "Ghibli"),
                     ),
-                    buildRow("Gender", widget.character.gender, Icon(Icons.wc_rounded)),
-                    buildRow("Age", widget.character.age, Icon(Icons.access_time_rounded)),
-                    buildRow("Eye Color", widget.character.eye_color, Icon(Icons.remove_red_eye_outlined)),
-                    buildRow("Hair Color", widget.character.hair_color, Icon(Icons.face_2)),
-                    buildRow("Specie", widget.character.specieName, Icon(Icons.auto_awesome)),
+                    buildRow("Gender", widget.character.gender,
+                        const Icon(Icons.wc_rounded)),
+                    buildRow("Age", widget.character.age,
+                        const Icon(Icons.access_time_rounded)),
+                    buildRow("Eye Color", widget.character.eye_color,
+                        const Icon(Icons.remove_red_eye_outlined)),
+                    buildRow("Hair Color", widget.character.hair_color,
+                        const Icon(Icons.face_2)),
+                    buildRow("Specie", widget.character.specieName,
+                        const Icon(Icons.auto_awesome)),
                   ],
                 ),
               ),

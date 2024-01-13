@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ghibli_app/screens/home_screen.dart';
 import 'package:ghibli_app/screens/locations_screen.dart';
 import 'package:ghibli_app/screens/characters_screen.dart';
 import 'package:ghibli_app/screens/settings_screen.dart';
@@ -8,11 +7,11 @@ import 'package:ghibli_app/screens/likes_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:ghibli_app/model/movie.dart';
 
+// ignore: camel_case_types
 class widget_side_bar extends StatelessWidget {
-
   final List<Movie> Function() getLikedMovies;
 
-  widget_side_bar({
+  const widget_side_bar({
     super.key,
     required this.getLikedMovies,
   });
@@ -33,7 +32,9 @@ class widget_side_bar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => LikesScreen(likedMovies: likedmovies,)));
+                      builder: (context) => LikesScreen(
+                            likedMovies: likedmovies,
+                          )));
             },
           ),
           ListTile(

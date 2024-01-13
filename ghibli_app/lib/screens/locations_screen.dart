@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/location.api.dart';
 
@@ -46,12 +48,13 @@ class _LocationsScreenState extends State<LocationsScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 125, 189, 125),
         toolbarHeight: 80,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(width: 10),
-            const Text(
+            SizedBox(width: 10),
+            Text(
               'LOCATIONS',
+              // ignore: deprecated_member_use
               textScaleFactor: 2,
               style: TextStyle(fontFamily: 'Ghibli'),
             ),
@@ -72,7 +75,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         '$movieName',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                           fontFamily: 'Ghibli',
                           fontSize: 18,
@@ -82,7 +85,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                     ),
                     ListView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: movieLocations.length,
                       itemBuilder: (context, index) {
                         return LocationCard(

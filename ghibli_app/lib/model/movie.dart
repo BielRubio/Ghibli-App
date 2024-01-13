@@ -1,8 +1,7 @@
-import 'dart:ffi';
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:ghibli_app/model/character.api.dart';
 import 'package:ghibli_app/model/location.api.dart';
-import 'package:ghibli_app/model/movie.api.dart';
 
 class Character {
   final String id,

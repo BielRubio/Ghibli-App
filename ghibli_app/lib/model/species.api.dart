@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:ghibli_app/model/movie.dart';
 import 'package:http/http.dart' as http;
