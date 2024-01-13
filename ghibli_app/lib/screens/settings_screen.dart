@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ghibli_app/model/themeprovider.dart';
 import 'package:ghibli_app/widgets/settings_parameter_widget.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -11,22 +13,25 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 125, 189, 125),
-        toolbarHeight: 80,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(width: 10),
-            Text(
-              'SETTINGS',
-              // ignore: deprecated_member_use
-              textScaleFactor: 2,
-              style: TextStyle(fontFamily: 'Ghibli'),
+        title: Text('Settings'),
+        actions: <Widget>[
+          // Dark Mode Toggle Icon
+          IconButton(
+            icon: Icon(
+              themeProvider.themeMode == ThemeMode.dark
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
             ),
-          ],
-        ),
+            onPressed: () {
+              // Toggle the theme mode
+              themeProvider
+                  .toggleTheme(themeProvider.themeMode != ThemeMode.dark);
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Center(

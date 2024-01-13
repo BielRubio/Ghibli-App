@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/screens/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:ghibli_app/model/themeprovider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,17 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ghibli Api',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.white,
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: Colors.white),
-        ),
-      ),
-      home: const HomeScreen(),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
+          themeMode: themeProvider.themeMode,
+          theme: ThemeData.light(), // Define light theme here
+          darkTheme: ThemeData.dark(), // Define dark theme here
+          home: const HomeScreen(),
+        );
+      },
     );
   }
 }
