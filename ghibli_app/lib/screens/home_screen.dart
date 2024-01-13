@@ -68,27 +68,33 @@ class _HomeScreenState extends State<HomeScreen> {
           : Column(children: [
               const SearchBarWidget(),
               Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 8.0,
-                    mainAxisSpacing: 8.0,
-                    childAspectRatio: 0.7,
-                  ),
-                  itemCount: _movies.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MovieScreen(movie: _movies[index])),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final crossAxisCount = (constraints.maxWidth / 200)
+                        .floor(); // Tamaño deseado de las tarjetas es 200
+                    return GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
+                        childAspectRatio: 0.7,
+                      ),
+                      itemCount: _movies.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MovieScreen(movie: _movies[index])),
+                            );
+                          },
+                          child: MovieCard(
+                            movie: _movies[index],
+                          ),
                         );
                       },
-                      child: MovieCard(
-                        movie: _movies[index],
-                      ),
                     );
                   },
                 ),
