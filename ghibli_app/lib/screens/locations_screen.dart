@@ -49,10 +49,6 @@ class _LocationsScreenState extends State<LocationsScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "assets/images/logo_ghibli.png",
-              scale: 10,
-            ),
             const SizedBox(width: 10),
             const Text(
               'LOCATIONS',

@@ -41,17 +41,24 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: const Color.fromARGB(255, 125, 189, 125),
         toolbarHeight: 80,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(width: 10),
             Image.asset(
               "assets/images/logo_ghibli.png",
               scale: 10,
             ),
-            const SizedBox(width: 10),
-            const Text(
-              'GHIBLI REALM',
-              textScaleFactor: 2,
-              style: TextStyle(fontFamily: 'Ghibli'),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'GHIBLI REALM',
+                    textScaleFactor: 2,
+                    style: TextStyle(fontFamily: 'Ghibli'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -36,16 +36,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text(
                 "ACCOUNT",
                 style: TextStyle(
-                  fontSize: 32,
-                ),
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 84, 84, 84)),
               ),
               SettingsParameterToggle(label: "Private Account", toggle: true),
               SettingsParameterToggle(label: "Delete Account", toggle: false),
+              // SizedBox(
+              //   height: 40,
+              // ),
               Text(
                 "NOTIFICATIONS",
                 style: TextStyle(
-                  fontSize: 32,
-                ),
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 84, 84, 84)),
               ),
               SettingsParameterToggle(label: "New Deals", toggle: true),
               SettingsParameterToggle(label: "Friend Requests", toggle: true),
@@ -53,15 +58,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text(
                 "OTHER",
                 style: TextStyle(
-                  fontSize: 32,
-                ),
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 84, 84, 84)),
               ),
               SettingsParameterToggle(label: "Contact Us", toggle: false),
             ],
           ),
         ),
       ),
-      backgroundColor: Colors.amber,
+      backgroundColor: Color.fromARGB(255, 228, 228, 228),
     );
   }
 }
