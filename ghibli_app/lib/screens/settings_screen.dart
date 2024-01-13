@@ -27,43 +27,61 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ],
         ),
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(25),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "ACCOUNT",
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 84, 84, 84)),
-              ),
-              SettingsParameterToggle(label: "Private Account", toggle: true),
-              SettingsParameterToggle(label: "Delete Account", toggle: false),
-              // SizedBox(
-              //   height: 40,
-              // ),
-              Text(
-                "NOTIFICATIONS",
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 84, 84, 84)),
-              ),
-              SettingsParameterToggle(label: "New Deals", toggle: true),
-              SettingsParameterToggle(label: "Friend Requests", toggle: true),
-              SettingsParameterToggle(label: "My Activity Likes", toggle: true),
-              Text(
-                "OTHER",
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 84, 84, 84)),
-              ),
-              SettingsParameterToggle(label: "Contact Us", toggle: false),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            margin: const EdgeInsets.all(25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "ACCOUNT",
+                  style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 84, 84, 84)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SettingsParameterToggle(label: "Private Account", toggle: true),
+                SettingsParameterToggle(label: "Delete Account", toggle: false),
+                // SizedBox(
+                //   height: 40,
+                // ),
+                SizedBox(
+                  height: 70,
+                ),
+                Text(
+                  "NOTIFICATIONS",
+                  style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 84, 84, 84)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SettingsParameterToggle(label: "New Deals", toggle: true),
+                SettingsParameterToggle(label: "Friend Requests", toggle: true),
+                SettingsParameterToggle(
+                    label: "My Activity Likes", toggle: true),
+                SizedBox(
+                  height: 70,
+                ),
+                Text(
+                  "OTHER",
+                  style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 84, 84, 84)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SettingsParameterToggle(label: "Contact Us", toggle: false),
+              ],
+            ),
           ),
         ),
       ),

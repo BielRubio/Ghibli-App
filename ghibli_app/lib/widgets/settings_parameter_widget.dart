@@ -24,7 +24,7 @@ class _SettingsParameterToggleState extends State<SettingsParameterToggle> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      height: 100,
       margin: const EdgeInsets.symmetric(vertical: 1),
       padding: const EdgeInsets.symmetric(horizontal: 25),
       decoration: const BoxDecoration(
