@@ -16,6 +16,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    Color textColor = Theme.of(context).brightness == Brightness.light
+        ? const Color.fromARGB(255, 34, 34, 34)
+        : Colors.white;
     return Scaffold(
         appBar: AppBar(
           title: const Text('Settings',
@@ -47,7 +50,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Center(
               child: Container(
                 margin: const EdgeInsets.all(25),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -55,50 +58,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 84, 84, 84)),
+                          color: textColor),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    SettingsParameterToggle(
+                    const SettingsParameterToggle(
                         label: "Private Account", toggle: true),
-                    SettingsParameterToggle(
+                    const SettingsParameterToggle(
                         label: "Delete Account", toggle: false),
                     // SizedBox(
                     //   height: 40,
                     // ),
-                    SizedBox(
-                      height: 70,
+                    const SizedBox(
+                      height: 50,
                     ),
                     Text(
                       "NOTIFICATIONS",
                       style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 84, 84, 84)),
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    SettingsParameterToggle(label: "New Deals", toggle: true),
-                    SettingsParameterToggle(
+                    const SettingsParameterToggle(
+                        label: "New Deals", toggle: true),
+                    const SettingsParameterToggle(
                         label: "Friend Requests", toggle: true),
-                    SettingsParameterToggle(
+                    const SettingsParameterToggle(
                         label: "My Activity Likes", toggle: true),
-                    SizedBox(
-                      height: 70,
+                    const SizedBox(
+                      height: 50,
                     ),
                     Text(
                       "OTHER",
                       style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 84, 84, 84)),
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    SettingsParameterToggle(label: "Contact Us", toggle: false),
+                    const SettingsParameterToggle(
+                        label: "Contact Us", toggle: false),
                   ],
                 ),
               ),

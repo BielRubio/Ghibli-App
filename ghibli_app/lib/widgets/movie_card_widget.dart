@@ -16,6 +16,8 @@ class MovieCard extends StatefulWidget {
 class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
+    Color textColor = Colors.white;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
@@ -75,7 +77,10 @@ class _MovieCardState extends State<MovieCard> {
                           scale: 11,
                         ),
                         const SizedBox(width: 2),
-                        Text("${widget.movie.rt_score}/100"),
+                        Text(
+                          "${widget.movie.rt_score}/100",
+                          style: TextStyle(color: textColor, fontSize: 12),
+                        ),
                       ],
                     ),
                   ),
@@ -99,7 +104,10 @@ class _MovieCardState extends State<MovieCard> {
                           size: 21,
                         ),
                         const SizedBox(width: 7),
-                        Text(widget.movie.release_date),
+                        Text(
+                          widget.movie.release_date,
+                          style: TextStyle(color: textColor, fontSize: 12),
+                        ),
                       ],
                     ),
                   ),

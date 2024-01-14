@@ -23,21 +23,21 @@ class _SettingsParameterToggleState extends State<SettingsParameterToggle> {
 
   @override
   Widget build(BuildContext context) {
+    Color textColor = Theme.of(context).brightness == Brightness.light
+        ? const Color.fromARGB(255, 34, 34, 34)
+        : Colors.white;
     return Container(
       height: 100,
       margin: const EdgeInsets.symmetric(vertical: 1),
       padding: const EdgeInsets.symmetric(horizontal: 25),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             widget.label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 28,
-              color: Color.fromARGB(255, 84, 84, 84),
+              color: textColor,
               fontWeight: FontWeight.w400,
             ),
           ),

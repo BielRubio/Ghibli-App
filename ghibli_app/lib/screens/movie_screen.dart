@@ -22,6 +22,7 @@ class _MovieScreenState extends State<MovieScreen> {
   }
 
   Widget build(BuildContext context) {
+    Color textColor = Colors.white;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 125, 189, 125),
@@ -86,22 +87,20 @@ class _MovieScreenState extends State<MovieScreen> {
                       children: [
                         Text(
                           widget.movie.title.toUpperCase(),
-                          style: const TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: textColor),
                         ),
                         const Spacer(flex: 1),
                         Text(
                           "${widget.movie.running_time} min",
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
+                          style: TextStyle(fontSize: 15, color: textColor),
                         ),
                         const Spacer(flex: 1),
                         Text(
                           widget.movie.release_date,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
+                          style: TextStyle(fontSize: 15, color: textColor),
                         ),
                         const Spacer(flex: 3),
                       ],
@@ -110,18 +109,16 @@ class _MovieScreenState extends State<MovieScreen> {
                     // Score
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Rotten Tomatoes:",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                          style: TextStyle(fontSize: 15, color: textColor),
                         ),
                         const Spacer(flex: 1),
                         RatingBarIndicator(
                           rating:
                               (double.parse(widget.movie.rt_score) / 100 * 5),
                           itemCount: 5,
-                          itemSize: 40,
+                          itemSize: 30,
                           itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Colors.amber,
@@ -131,7 +128,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         // Like Button
                         IconButton(
                           icon: Icon(
-                            size: 50,
+                            size: 30,
                             widget.movie.liked
                                 ? Icons.favorite
                                 : Icons.favorite_border,
@@ -149,31 +146,23 @@ class _MovieScreenState extends State<MovieScreen> {
                     const SizedBox(height: 25),
                     Text(
                       "Director: ${widget.movie.director}",
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontSize: 15, color: textColor),
                     ),
                     const SizedBox(height: 25),
                     Text(
                       "Producer: ${widget.movie.producer}",
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontSize: 15, color: textColor),
                     ),
                     const SizedBox(height: 25),
-                    const Text(
-                      "Descripcion:",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                    Text(
+                      "Description:",
+                      style: TextStyle(fontSize: 15, color: textColor),
                     ),
                     const SizedBox(height: 10),
                     Text(
                       widget.movie.description,
                       overflow: TextOverflow.visible,
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontSize: 15, color: textColor),
                     ),
                   ],
                 ),

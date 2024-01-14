@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: unnecessary_string_interpolations, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
@@ -7,11 +7,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class MovieSpeciesScreen extends StatefulWidget {
-  // ignore: non_constant_identifier_names
   final String Title;
   final List<dynamic> movieSpeciesURL;
-  // ignore: non_constant_identifier_names
-  const MovieSpeciesScreen({super.key, required this.Title, required this.movieSpeciesURL});
+
+  const MovieSpeciesScreen(
+      {super.key, required this.Title, required this.movieSpeciesURL});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -29,24 +29,20 @@ class _MovieSpeciesScreen extends State<MovieSpeciesScreen> {
     getSpecies();
   }
 
-Future<void> getSpecies() async {
-
+  Future<void> getSpecies() async {
     try {
-
       await Future.forEach(widget.movieSpeciesURL, (url) async {
         Specie? specie = await getSpecieFromUrl(url);
-        if(specie != null) {
+        if (specie != null) {
           moviespecies.add(specie);
         }
-
       });
 
       setState(() {
         _isLoading = false;
       });
-    // ignore: empty_catches
-    } catch (e) {
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 
   @override
@@ -64,7 +60,7 @@ Future<void> getSpecies() async {
                 '${widget.Title}',
                 // ignore: deprecated_member_use
                 textScaleFactor: 1.8,
-                style: const TextStyle(fontFamily: 'Ghibli'),
+                style: const TextStyle(fontFamily: 'Ghibli', fontSize: 18),
               ),
             ),
           ],
@@ -95,22 +91,22 @@ Future<void> getSpecies() async {
 }
 
 Future<Specie?> getSpecieFromUrl(String specieUrl) async {
-    try {
-      final response = await http.get(Uri.parse(specieUrl));
+  try {
+    final response = await http.get(Uri.parse(specieUrl));
 
-      if (response.statusCode == 200) {
-        final dynamic jsonData = jsonDecode(response.body);
-        if (jsonData is Map<String, dynamic> &&
-            jsonData.containsKey('name') &&
-            jsonData['name'] != null) {
-          return Specie.fromJson(jsonData);
-        } else {
-          return null;
-        }
+    if (response.statusCode == 200) {
+      final dynamic jsonData = jsonDecode(response.body);
+      if (jsonData is Map<String, dynamic> &&
+          jsonData.containsKey('name') &&
+          jsonData['name'] != null) {
+        return Specie.fromJson(jsonData);
       } else {
-        throw Exception('Failed to fetch specie: ${response.statusCode}');
+        return null;
       }
-    } on Exception catch (e) {
-      throw Exception('Failed to fetch specie: $e');
+    } else {
+      throw Exception('Failed to fetch specie: ${response.statusCode}');
     }
+  } on Exception catch (e) {
+    throw Exception('Failed to fetch specie: $e');
   }
+}

@@ -49,7 +49,7 @@ class _MovieCharactersScreenState extends State<MovieCharactersScreen> {
                 '${widget.Title}',
                 // ignore: deprecated_member_use
                 textScaleFactor: 1.8,
-                style: const TextStyle(fontFamily: 'Ghibli'),
+                style: const TextStyle(fontFamily: 'Ghibli', fontSize: 18),
               ),
             ),
           ],
@@ -63,7 +63,7 @@ class _MovieCharactersScreenState extends State<MovieCharactersScreen> {
                     "This api does not provide any characters for this movie",
                     style: TextStyle(
                         color: Color.fromARGB(255, 170, 0, 0),
-                        fontSize: 16,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold),
                   ),
                 )
