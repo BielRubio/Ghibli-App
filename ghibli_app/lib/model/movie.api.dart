@@ -38,4 +38,13 @@ class MovieApi {
       return "Unknown";
     }
   }
+
+  List<Specie> getMovieSpecies(List<dynamic> urlList){
+
+    List<Specie> listToReturn = [];
+
+    return listToReturn;
+  }
+
+
 }

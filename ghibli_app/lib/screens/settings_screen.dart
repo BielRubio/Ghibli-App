@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use, unused_local_variable
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 import 'package:ghibli_app/model/themeprovider.dart';
 import 'package:ghibli_app/widgets/settings_parameter_widget.dart';

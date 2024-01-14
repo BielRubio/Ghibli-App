@@ -168,7 +168,7 @@ class Movie {
       rt_score;
 
   final List<Character> people;
-  final List<Specie> species;
+  final List<dynamic> speciesUrlList;
   final List<Location> locations;
   bool liked;
   Movie({
@@ -182,12 +182,14 @@ class Movie {
     required this.running_time,
     required this.rt_score,
     this.people = const [],
-    this.species = const [],
+    required this.speciesUrlList,
     this.locations = const [],
     this.liked = false,
   });
 
   factory Movie.fromJson(dynamic json) {
+
+
     return Movie(
       id: json['id'] as String,
       title: json['title'] as String,
@@ -198,8 +200,8 @@ class Movie {
       release_date: json['release_date'] as String,
       running_time: json['running_time'] as String,
       rt_score: json['rt_score'] as String,
+      speciesUrlList: json['species'] as List<dynamic>,
       //people: List<Character>.from(json['people'].map((x) => Character.fromJson(x))),
-      //species: List<Specie>.from(json['species'].map((x) => Specie.fromJson(x))),
       //locations: List<Location>.from(json['locations'].map((x) => Location.fromJson(x))),
     );
   }

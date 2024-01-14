@@ -2,14 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/model/movie.dart';
-import 'package:ghibli_app/model/species.api.dart';
 import 'package:ghibli_app/widgets/species_card_widget.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class MovieSpeciesScreen extends StatefulWidget {
   // ignore: non_constant_identifier_names
   final String Title;
+  final List<dynamic> movieSpeciesURL;
   // ignore: non_constant_identifier_names
-  const MovieSpeciesScreen({super.key, required this.Title});
+  const MovieSpeciesScreen({super.key, required this.Title, required this.movieSpeciesURL});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -17,8 +19,7 @@ class MovieSpeciesScreen extends StatefulWidget {
 }
 
 class _MovieSpeciesScreen extends State<MovieSpeciesScreen> {
-  late List<Specie> _species;
-  late List<Specie> moviespecies;
+  late List<Specie> moviespecies = [];
 
   bool _isLoading = true;
 
@@ -28,12 +29,24 @@ class _MovieSpeciesScreen extends State<MovieSpeciesScreen> {
     getSpecies();
   }
 
-  Future<void> getSpecies() async {
-    _species = await SpeciesApi.getSpecies();
-    moviespecies = GetMovieSpecies(_species, widget.Title);
-    setState(() {
-      _isLoading = false;
-    });
+Future<void> getSpecies() async {
+
+    try {
+
+      await Future.forEach(widget.movieSpeciesURL, (url) async {
+        Specie? specie = await getSpecieFromUrl(url);
+        if(specie != null) {
+          moviespecies.add(specie);
+        }
+
+      });
+
+      setState(() {
+        _isLoading = false;
+      });
+    // ignore: empty_catches
+    } catch (e) {
+    }
   }
 
   @override
@@ -81,9 +94,23 @@ class _MovieSpeciesScreen extends State<MovieSpeciesScreen> {
   }
 }
 
-// ignore: non_constant_identifier_names
-List<Specie> GetMovieSpecies(List<Specie> charToSearch, String FilmName) {
-  return charToSearch
-      .where((specie_) => specie_.film_Name == FilmName)
-      .toList();
-}
+Future<Specie?> getSpecieFromUrl(String specieUrl) async {
+    try {
+      final response = await http.get(Uri.parse(specieUrl));
+
+      if (response.statusCode == 200) {
+        final dynamic jsonData = jsonDecode(response.body);
+        if (jsonData is Map<String, dynamic> &&
+            jsonData.containsKey('name') &&
+            jsonData['name'] != null) {
+          return Specie.fromJson(jsonData);
+        } else {
+          return null;
+        }
+      } else {
+        throw Exception('Failed to fetch specie: ${response.statusCode}');
+      }
+    } on Exception catch (e) {
+      throw Exception('Failed to fetch specie: $e');
+    }
+  }

@@ -50,14 +50,14 @@ class _SpeciesCardState extends State<SpeciesCard> {
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(255, 230, 230, 230).withOpacity(0.0),
+              color: const Color.fromARGB(255, 230, 230, 230).withOpacity(0.0),
               spreadRadius: 1,
               blurRadius: 6,
               offset: const Offset(0, 3),
             ),
           ],
           image: DecorationImage(
-            image: AssetImage("assets/images/species/fondo.png"),
+            image: const AssetImage("assets/images/species/fondo.png"),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
               const Color.fromARGB(255, 0, 0, 0).withOpacity(0.6),
@@ -72,7 +72,7 @@ class _SpeciesCardState extends State<SpeciesCard> {
             borderRadius: BorderRadius.circular(10.0),
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
-              stops: [0.1, 0.7],
+              stops: const [0.1, 0.7],
               end: Alignment.centerRight,
               colors: [Colors.white, Colors.white.withOpacity(0.3)],
             ),

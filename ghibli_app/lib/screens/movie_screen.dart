@@ -184,6 +184,7 @@ class _MovieScreenState extends State<MovieScreen> {
       ),
       endDrawer: widget_movie_side_bar(
         movieTitle: widget.movie.title,
+        speciesURL: widget.movie.speciesUrlList,
       ),
     );
   }

@@ -25,7 +25,7 @@ class SpeciesApi {
       throw Exception('Failed to fetch species: $e');
     }
   }
-
+  
   static Future<String> fetchMovieName(String apiUrl) async {
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -42,4 +42,20 @@ class SpeciesApi {
       throw Exception('Failed to fetch movie name');
     }
   }
+
+  static Future<Specie> getSpecieFromUrl(String specieUrl) async {
+    try {
+      final response = await http.get(Uri.parse(specieUrl));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonData = jsonDecode(response.body);
+        return Specie.fromJson(jsonData);
+      } else {
+        throw Exception('Failed to fetch specie: ${response.statusCode}');
+      }
+    } on Exception catch (e) {
+      throw Exception('Failed to fetch specie: $e');
+    }
+  }
 }
+

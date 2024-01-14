@@ -6,10 +6,11 @@ import 'package:ghibli_app/screens/movie_species_screen.dart';
 // ignore: camel_case_types
 class widget_movie_side_bar extends StatelessWidget {
   final String movieTitle;
-
+  final List<dynamic> speciesURL;
   const widget_movie_side_bar({
     super.key,
     required this.movieTitle,
+    required this.speciesURL
   });
 
   @override
@@ -52,6 +53,7 @@ class widget_movie_side_bar extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => MovieSpeciesScreen(
                             Title: movieTitle,
+                            movieSpeciesURL: speciesURL,
                           )));
             },
           ),

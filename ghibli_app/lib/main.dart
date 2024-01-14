@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/screens/home_screen.dart';
+// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 import 'package:ghibli_app/model/themeprovider.dart';
 
